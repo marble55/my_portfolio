@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\HeroSectionController;
+use App\Orchid\Screens\AboutListEditScreen;
+use App\Orchid\Screens\AboutListScreen;
 use App\Orchid\Screens\AboutSectionScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
@@ -46,7 +48,34 @@ Route::put('/hero/update', [HeroSectionController::class, 'update'])
     ->name('hero.update');
 
 // About
-Route::screen('about', AboutSectionScreen::class)->name('platform.about');
+Route::screen('/about', AboutSectionScreen::class)->name('platform.about')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('About'), route('platform.about')));;
+
+//About > {Skill}
+Route::screen('about/list1/{category}', AboutListScreen::class)->name('platform.about.skill')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.about')
+        ->push(__('Skill'), route('platform.about.skill', ['category' => 'Skill'])));
+
+//About > {Experience}
+Route::screen('about/list2/{category}', AboutListScreen::class)->name('platform.about.experience')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.about')
+        ->push(__('Experience'), route('platform.about.experience', ['category' => 'Experience'])));
+
+//About > {Education}
+Route::screen('about/list3/{category}', AboutListScreen::class)->name('platform.about.education')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.about')
+        ->push(__('Education'), route('platform.about.education', ['category' => 'Education'])));
+
+
+// About > {category} > Edit
+Route::screen('about/list1/{category}/edit', AboutListEditScreen::class)
+    ->name('platform.about.edit');
+
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)
     ->name('platform.profile')

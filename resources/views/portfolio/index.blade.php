@@ -12,14 +12,11 @@
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="images/user.png">
+                    <img src="{{$about->image_path}}">
                 </div>
                 <div class="about-col-2">
                     <h1 class="sub-title">About Me</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro aspernatur
-                        iusto labore est necessitatibus quibusdam tempore vitae, ratione illum nobis,
-                        culpa laudantium reiciendis iure animi ducimus exercitationem! Distinctio, quidem sunt!</p>
-
+                    {{$about->description}}
                     <div class="tab-titles">
                         <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
                         <p class="tab-links" onclick="opentab('experience')">Experience</p>

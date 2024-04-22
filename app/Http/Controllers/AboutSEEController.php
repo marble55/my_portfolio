@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\About;
-use App\Models\HeroSection;
+use App\Models\AboutSEE;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class AboutSEEController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $heroSection = HeroSection::first();
-        $about = About::first();
-        return view('portfolio.index', compact('heroSection', 'about'));
+        //
     }
 
     /**
@@ -37,7 +34,7 @@ class IndexController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(AboutSEE $aboutSEE)
     {
         //
     }
@@ -45,7 +42,7 @@ class IndexController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(AboutSEE $aboutSEE)
     {
         //
     }
@@ -53,7 +50,7 @@ class IndexController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, AboutSEE $aboutSEE)
     {
         //
     }
@@ -61,7 +58,7 @@ class IndexController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(AboutSEE $aboutSEE)
     {
         //
     }

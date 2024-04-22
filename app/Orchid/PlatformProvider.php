@@ -39,7 +39,12 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('platform.hero'),
 
             Menu::make('About')
-                ->route('platform.about'),
+                ->route('platform.about')
+                ->list([
+                    Menu::make('Skill List')->route('platform.about.skill', ['category' => 'Skill']),
+                    Menu::make('Experience List')->route('platform.about.experience', ['category' => 'Experience']),
+                    Menu::make('Education List')->route('platform.about.education', ['category' => 'Education']),
+                ]),
 
             Menu::make('Get Started')
                 ->icon('bs.book')

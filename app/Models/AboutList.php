@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Attachment\Attachable;
 use Orchid\Screen\AsSource;
 
-class About extends Model
+class AboutList extends Model
 {
-    use HasFactory, AsSource, Attachable;
+    use HasFactory, AsSource;
 
     protected $fillable =[
-        'description','image_path'
+        'category', 'title', 'description'
     ];
 }
