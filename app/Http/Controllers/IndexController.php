@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\AboutList;
 use App\Models\HeroSection;
+use App\Models\Portfolio;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -13,9 +16,22 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $heroSection = HeroSection::first();
-        $about = About::first();
-        return view('portfolio.index', compact('heroSection', 'about'));
+        
+        $heroSections = HeroSection::first();
+        $abouts = About::first();
+        $skillLists = AboutList::where('category', '=', 'Skill')->get();
+        $experienceLists = AboutList::where('category', '=', 'Experience')->get();
+        $educationLists = AboutList::where('category', '=', 'Education')->get();
+        $services = Service::get();
+        $portfolios = Portfolio::get();
+        return view('portfolio.index', compact(
+            'heroSections', 
+            'abouts', 
+            'skillLists', 
+            'experienceLists', 
+            'educationLists',
+            'services',
+            'portfolios'));
     }
 
     /**

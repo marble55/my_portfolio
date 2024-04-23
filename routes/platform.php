@@ -6,6 +6,7 @@ use App\Http\Controllers\HeroSectionController;
 use App\Orchid\Screens\AboutListEditScreen;
 use App\Orchid\Screens\AboutListScreen;
 use App\Orchid\Screens\AboutSectionScreen;
+use App\Orchid\Screens\ContactScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -17,8 +18,10 @@ use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\HeroSectionScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\PortfolioScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
+use App\Orchid\Screens\ServicesScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -76,6 +79,24 @@ Route::screen('about/list3/{category}', AboutListScreen::class)->name('platform.
 Route::screen('about/list1/{category}/edit', AboutListEditScreen::class)
     ->name('platform.about.edit');
 
+// Services
+Route::screen('services', ServicesScreen::class)->name('platform.services')
+->breadcrumbs(fn (Trail $trail) => $trail
+    ->parent('platform.index')
+    ->push(__('Services'), route('platform.services')));;
+
+// Portfolio
+Route::screen('portfolio', PortfolioScreen::class)->name('platform.portfolio')
+->breadcrumbs(fn (Trail $trail) => $trail
+    ->parent('platform.index')
+    ->push(__('Portfolio'), route('platform.portfolio')));;
+
+// Contact
+Route::screen('contact', ContactScreen::class)->name('platform.contact')
+->breadcrumbs(fn (Trail $trail) => $trail
+    ->parent('platform.index')
+    ->push(__('Contact'), route('platform.contact')));;
+    
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)
     ->name('platform.profile')

@@ -1,22 +1,23 @@
 <x-app>
+    <!-- ---------about--------- -->
     <div id="hero">
         <div class="container">
             <div class="hero-text">
-                <p>{{$heroSection->occupation}}</p>
-                <h1>Hi, I'm <span>{{$heroSection->name_title}}</span><br>{{$heroSection->sub_title}}</h1>
+                <p>{{ $heroSections->occupation }}</p>
+                <h1>Hi, I'm <span>{{ $heroSections->name_title }}</span><br>{{ $heroSections->sub_title }}</h1>
             </div>
         </div>
     </div>
-<!-- ---------about--------- -->
+    <!-- ---------about--------- -->
     <div id="about">
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="{{$about->image_path}}">
+                    <img src="{{ $abouts->image_path }}">
                 </div>
                 <div class="about-col-2">
                     <h1 class="sub-title">About Me</h1>
-                    {{$about->description}}
+                    {{ $abouts->description }}
                     <div class="tab-titles">
                         <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
                         <p class="tab-links" onclick="opentab('experience')">Experience</p>
@@ -24,97 +25,65 @@
                     </div>
                     <div class="tab-contents active-tab" id="skills">
                         <ul>
-                            <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
-                            <li><span>Web Development</span><br>Web app Development</li>
-                            <li><span>App Development</span><br>App development</li>
+                            @foreach ($skillLists as $skill)
+                                <li><span>{{ $skill->title }}</span><br>{{ $skill->description }}
+                            @endforeach
                         </ul>
                     </div>
                     <div class="tab-contents" id="experience">
                         <ul>
-                            <li><span>2020 - cuurre</span><br>Insert Something in here</li>
-                            <li><span>2022 - 2025</span><br>Insert experience gained or something</li>
-                            <li><span>2024 - 1997</span><br>Wowzersss</li>
+                            @foreach ($experienceLists as $experience)
+                                <li><span>{{ $experience->title }}</span><br>{{ $experience->description }}
+                            @endforeach
                         </ul>
                     </div>
                     <div class="tab-contents" id="education">
                         <ul>
-                            <li><span>2021</span><br>Schoooollll</li>
-                            <li><span>2023</span><br>sheeeesshh</li>
-                            <li><span>2025</span><br>In da future</li>
+                            @foreach ($educationLists as $education)
+                                <li><span>{{ $education->title }}</span><br>{{ $education->description }}
+                            @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<!-- ------------services------------ -->
+    <!-- ------------services------------ -->
     <div id="services">
         <div class="container">
             <h1 class="sub-title">My Services</h1>
             <div class="services-list">
+                @foreach ($services as $service)
                 <div>
-                    <i class="fa-solid fa-code"></i>
-                    <h2>Web Design</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis at aspernatur cumque ut
-                        sapiente iure, soluta quam aliquam qui voluptates sed ipsum
-                        nemo magnam assumenda vel excepturi. Laborum, animi facilis!</p>
-                    <a href="#">Learn more</a>
+                    <i class="{{$service->icon_path}}"></i>
+                    <h2>{{$service->title}}</h2>
+                    <p>{{$service->description}}</p>
+                    <a href="#">Learn more</a>    
                 </div>
-                <div>
-                    <i class="fa-brands fa-figma"></i>
-                    <h2>Game Design</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis at aspernatur cumque ut
-                        sapiente iure, soluta quam aliquam qui voluptates sed ipsum
-                        nemo magnam assumenda vel excepturi. Laborum, animi facilis!</p>
-                    <a href="#">Learn more</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-ghost"></i>
-                    <h2>App Design</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis at aspernatur cumque ut
-                        sapiente iure, soluta quam aliquam qui voluptates sed ipsum
-                        nemo magnam assumenda vel excepturi. Laborum, animi facilis!</p>
-                    <a href="#">Learn more</a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
-<!-- ------------portfolio------------ -->
+    <!-- ------------portfolio------------ -->
     <div id="portfolio">
         <div class="container">
             <h1 class="sub-title">My Works</h1>
             <div class="work-list">
+                @foreach ($portfolios as $portfolio)
                 <div class="work">
-                    <img src="images/work-1.png">
+                    <img src="{{$portfolio->image_path}}">
                     <div class="layer">
-                        <h3>Social Media App</h3>
-                        <p>something something something something blah blash blah blahss</p>
+                        <h3>{{$portfolio->title}}</h3>
+                        <p>{{$portfolio->description}}</p>
                         <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
-                <div class="work">
-                    <img src="images/work-2.png">
-                    <div class="layer">
-                        <h3>Something something</h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis ipsa, voluptatum aliquid
-                            tenetur ea sequi error molestias blanditiis nisi repudiandae unde expedita voluptas
-                            similique delectus labore alias tempora velit optio.</p>
-                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="images/work-3.png">
-                    <div class="layer">
-                        <h3>Wooooww</h3>
-                        <p>something something something something blah blash blah blahss</p>
-                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <a href="#" class="btn">See more</a>
         </div>
     </div>
-<!-- --------------------contact------------------------- -->
+    <!-- --------------------contact------------------------- -->
     <div id="contact">
         <div class="container">
             <div class="row">
@@ -127,8 +96,12 @@
                         <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
                         <a href="#"><i class="fa-brands fa-reddit"></i></a>
                         <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
                     </div>
-                    <a href="images/my-cv.pdf" download class="btn btn2">Download CV</a>
+                    <a href="documents/my-cv.pdf" download class="btn btn2">Download CV</a>
                 </div>
                 <div class="contact-right">
                     <form action="">
@@ -145,8 +118,8 @@
             Copyright @ Zeller Jane Bustamante
         </div>
     </div>
-    
-    {{--Script for the about section tab-title selection --}}
+
+    {{-- Script for the about section tab-title selection --}}
     <script>
         var tablinks = document.getElementsByClassName("tab-links");
         var tabcontents = document.getElementsByClassName("tab-contents");
@@ -174,7 +147,7 @@
             sidemenu.style.right = "-200px";
         }
     </script>
-    {{--Script for the parallax effect --}}
+    {{-- Script for the parallax effect --}}
     {{-- <script>
         let page = document.getElementById("about");
 

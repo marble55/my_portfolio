@@ -46,6 +46,15 @@ class PlatformProvider extends OrchidServiceProvider
                     Menu::make('Education List')->route('platform.about.education', ['category' => 'Education']),
                 ]),
 
+            Menu::make('Services')->route('platform.services'),
+
+            Menu::make('Portfolio')->route('platform.portfolio'),
+
+            Menu::make('Contact')->route('platform.contact')
+                ->list([
+                    Menu::make('Messages')->route('platform.contact'),
+                ]),
+
             Menu::make('Get Started')
                 ->icon('bs.book')
                 ->title('Navigation')
