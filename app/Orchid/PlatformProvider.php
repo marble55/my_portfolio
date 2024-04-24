@@ -52,7 +52,8 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Contact')->route('platform.contact')
                 ->list([
-                    Menu::make('Messages')->route('platform.contact'),
+                    Menu::make('Links')->route('platform.contact.links'),
+                    Menu::make('Messages')->route('platform.contact.messages'),
                 ]),
 
             Menu::make('Get Started')

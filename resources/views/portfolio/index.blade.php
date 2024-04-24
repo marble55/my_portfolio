@@ -89,25 +89,21 @@
             <div class="row">
                 <div class="contact-left">
                     <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa-solid fa-envelope"></i> hazuza@gmail.com</p>
-                    <p><i class="fa-solid fa-square-phone"></i> 09550725115</p>
+                    <p><i class="fa-solid fa-envelope"></i> {{$contacts->email}}</p>
+                    <p><i class="fa-solid fa-square-phone"></i> {{$contacts->phoneNumber}}</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-reddit"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                        
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        @foreach ($contactLinks as $contactLink)
+                            <a href="{{$contactLink->link}}"><i class="{{$contactLink->icon_path}}"></i></a>
+                        @endforeach
                     </div>
                     <a href="documents/my-cv.pdf" download class="btn btn2">Download CV</a>
                 </div>
                 <div class="contact-right">
-                    <form action="">
-                        <input type="text" name="Name" placeholder="Your Name" required>
-                        <input type="email" name="Email" placeholder="Your Email" required>
-                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <form method="POST" action="{{route('contact.store')}}">
+                        @csrf
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" rows="6" placeholder="Your Message"></textarea>
                         <button type="submit" class="btn btn2">Submit</button>
                     </form>
 

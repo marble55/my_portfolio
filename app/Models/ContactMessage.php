@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 
-class ContactLink extends Model
+class ContactMessage extends Model
 {
     use HasFactory, AsSource;
 
-    protected $fillable = ['platform', 'link', 'icon_path'];
+
+    public $fillable = ['name', 'email', 'message'];
 }

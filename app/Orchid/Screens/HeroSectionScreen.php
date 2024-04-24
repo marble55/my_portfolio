@@ -53,7 +53,6 @@ class HeroSectionScreen extends Screen
      */
     public function commandBar(): array
     {
-        $heroSection = HeroSection::first();
         return [
             Button::make('Save')
                 ->icon('note')

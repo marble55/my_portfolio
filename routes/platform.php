@@ -6,6 +6,9 @@ use App\Http\Controllers\HeroSectionController;
 use App\Orchid\Screens\AboutListEditScreen;
 use App\Orchid\Screens\AboutListScreen;
 use App\Orchid\Screens\AboutSectionScreen;
+use App\Orchid\Screens\ContactLinksScreen;
+use App\Orchid\Screens\ContactListScreen;
+use App\Orchid\Screens\ContactMessageScreen;
 use App\Orchid\Screens\ContactScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
@@ -81,22 +84,34 @@ Route::screen('about/list1/{category}/edit', AboutListEditScreen::class)
 
 // Services
 Route::screen('services', ServicesScreen::class)->name('platform.services')
-->breadcrumbs(fn (Trail $trail) => $trail
-    ->parent('platform.index')
-    ->push(__('Services'), route('platform.services')));;
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Services'), route('platform.services')));;
 
 // Portfolio
 Route::screen('portfolio', PortfolioScreen::class)->name('platform.portfolio')
-->breadcrumbs(fn (Trail $trail) => $trail
-    ->parent('platform.index')
-    ->push(__('Portfolio'), route('platform.portfolio')));;
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Portfolio'), route('platform.portfolio')));;
 
 // Contact
 Route::screen('contact', ContactScreen::class)->name('platform.contact')
-->breadcrumbs(fn (Trail $trail) => $trail
-    ->parent('platform.index')
-    ->push(__('Contact'), route('platform.contact')));;
-    
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Contact'), route('platform.contact')));;
+
+// Contact > Links
+Route::screen('contact/links', ContactLinksScreen::class)->name('platform.contact.links')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.contact')
+        ->push(__('Links'), route('platform.contact.links')));;
+
+// Contact > Messages
+Route::screen('contact/messages', ContactMessageScreen::class)->name('platform.contact.messages')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.contact')
+        ->push(__('Links'), route('platform.contact.messages')));
+        
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)
     ->name('platform.profile')

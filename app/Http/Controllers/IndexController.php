@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\AboutList;
+use App\Models\Contact;
+use App\Models\ContactLink;
 use App\Models\HeroSection;
 use App\Models\Portfolio;
 use App\Models\Service;
@@ -24,6 +26,8 @@ class IndexController extends Controller
         $educationLists = AboutList::where('category', '=', 'Education')->get();
         $services = Service::get();
         $portfolios = Portfolio::get();
+        $contacts = Contact::first();
+        $contactLinks = ContactLink::get();
         return view('portfolio.index', compact(
             'heroSections', 
             'abouts', 
@@ -31,7 +35,10 @@ class IndexController extends Controller
             'experienceLists', 
             'educationLists',
             'services',
-            'portfolios'));
+            'portfolios',
+            'contacts',
+            'contactLinks',
+        ));
     }
 
     /**
