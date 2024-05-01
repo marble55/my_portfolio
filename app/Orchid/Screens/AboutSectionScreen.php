@@ -73,6 +73,8 @@ class AboutSectionScreen extends Screen
             Layout::columns([
                 Layout::rows([
                     Cropper::make('about.image_path')
+                        ->width(624)
+                        ->height(811)
                         ->title('Upload Image')->targetUrl()
                 ])->title('Image About Me'),
                 Layout::rows([
