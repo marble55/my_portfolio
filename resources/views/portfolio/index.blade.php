@@ -110,11 +110,8 @@
                 </div>
             </div>
         </div>
-        <div class="copyright">
-            Copyright @ Zeller Jane Bustamante
-        </div>
+        
     </div>
-
     {{-- Script for the about section tab-title selection --}}
     <script>
         var tablinks = document.getElementsByClassName("tab-links");

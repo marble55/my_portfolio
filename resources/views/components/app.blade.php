@@ -9,6 +9,7 @@
     @vite('resources/css/app.css')
     <script src="https://kit.fontawesome.com/377fd11c1f.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div id="header" class="container">
         {{-- ----- Navigation Bar ---- --}}
@@ -30,6 +31,11 @@
         {{ $slot }}
     </main>
 
+    <footer>
+        <div class="copyright">
+            Copyright @ Zeller Jane Bustamante
+        </div>
+    </footer>
 </body>
 
 </html>
