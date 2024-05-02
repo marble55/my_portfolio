@@ -1,6 +1,7 @@
 <x-app>
     <!-- ---------about--------- -->
     <div id="hero">
+        <div class="background"></div>
         <div class="container">
             <div class="hero-text">
                 <p>{{ $heroSections->occupation }}</p>
