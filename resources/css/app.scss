@@ -67,29 +67,30 @@ nav ul li a:hover::after{
     height: 100vh;
 }
 
-.background{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    filter: blur(150px);
-    background: linear-gradient(45deg, #d2001a, #7462ff, #f48e21, #23d5ab );
-    background-size: 200%, 200%;
-    animation: color 30s ease-in-out infinite;
-}
 
-@keyframes color{
-    0%{
-        background-position: 0% 50%;
-    }
-    50%{
-        background-position: 100% 50%;
-    }
-    100%{
-        background-position: 0% 50%;
-    }
-}
+// .background{
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     width: 100%;
+//     height: 100%;
+//     filter: blur(150px);
+//     background: linear-gradient(45deg, #d2001a, #7462ff, #f48e21, #23d5ab );
+//     background-size: 200%, 200%;
+//     animation: color 30s ease-in-out infinite;
+// }
+
+// @keyframes color{
+//     0%{
+//         background-position: 0% 50%;
+//     }
+//     50%{
+//         background-position: 100% 50%;
+//     }
+//     100%{
+//         background-position: 0% 50%;
+//     }
+// }
 
 .container{
     position: relative;
