@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="header" class="container">
+    <div id="navbar">
         {{-- ----- Navigation Bar ---- --}}
         <nav>
             <img src="images/logo.png" class="logo">
