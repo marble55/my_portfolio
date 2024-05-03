@@ -1,7 +1,27 @@
 <x-app>
     <!-- ---------about--------- -->
     <div id="hero">
-        <div class="background"></div>
+
+        <div class="background">
+            {{-- <svg xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18  -8"
+                            result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                </defs>
+            </svg>     --}}
+            <div class="gradients-container">
+                <div class="g1"></div>
+                <div class="g2"></div>
+                <div class="g3"></div>
+                <div class="g4"></div>
+                <div class="g5"></div>
+                <div class="interactive"></div>
+            </div>
+        </div>
         <div class="container">
             <div class="hero-text">
                 <p>{{ $heroSections->occupation }}</p>
@@ -55,12 +75,12 @@
             <h1 class="sub-title">My Services</h1>
             <div class="services-list">
                 @foreach ($services as $service)
-                <div>
-                    <i class="{{$service->icon_path}}"></i>
-                    <h2>{{$service->title}}</h2>
-                    <p>{{$service->description}}</p>
-                    <a href="#">Learn more</a>    
-                </div>
+                    <div>
+                        <i class="{{ $service->icon_path }}"></i>
+                        <h2>{{ $service->title }}</h2>
+                        <p>{{ $service->description }}</p>
+                        <a href="#">Learn more</a>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -71,14 +91,14 @@
             <h1 class="sub-title">My Works</h1>
             <div class="work-list">
                 @foreach ($portfolios as $portfolio)
-                <div class="work">
-                    <img src="{{$portfolio->image_path}}">
-                    <div class="layer">
-                        <h3>{{$portfolio->title}}</h3>
-                        <p>{{$portfolio->description}}</p>
-                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <div class="work">
+                        <img src="{{ $portfolio->image_path }}">
+                        <div class="layer">
+                            <h3>{{ $portfolio->title }}</h3>
+                            <p>{{ $portfolio->description }}</p>
+                            <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
             <a href="#" class="btn">See more</a>
@@ -90,17 +110,17 @@
             <div class="row">
                 <div class="contact-left">
                     <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa-solid fa-envelope"></i> {{$contacts->email}}</p>
-                    <p><i class="fa-solid fa-square-phone"></i> {{$contacts->phoneNumber}}</p>
+                    <p><i class="fa-solid fa-envelope"></i> {{ $contacts->email }}</p>
+                    <p><i class="fa-solid fa-square-phone"></i> {{ $contacts->phoneNumber }}</p>
                     <div class="social-icons">
                         @foreach ($contactLinks as $contactLink)
-                            <a href="{{$contactLink->link}}"><i class="{{$contactLink->icon_path}}"></i></a>
+                            <a href="{{ $contactLink->link }}"><i class="{{ $contactLink->icon_path }}"></i></a>
                         @endforeach
                     </div>
                     <a href="documents/my-cv.pdf" download class="btn btn2">Download CV</a>
                 </div>
                 <div class="contact-right">
-                    <form method="POST" action="{{route('contact.store')}}">
+                    <form method="POST" action="{{ route('contact.store') }}">
                         @csrf
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Your Email" required>
@@ -111,7 +131,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     {{-- Script for the about section tab-title selection --}}
     <script>
@@ -141,8 +161,8 @@
             sidemenu.style.right = "-200px";
         }
     </script>
-    {{-- Script for the parallax effect --}}
-    {{-- <script>
+    {{-- Script for the parallax effect
+    <script>
         let page = document.getElementById("about");
 
         window.addEventListener('scroll', () => {
