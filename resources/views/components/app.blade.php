@@ -14,7 +14,7 @@
     <div id="navbar">
         {{-- ----- Navigation Bar ---- --}}
         <nav>
-            <img src="images/logo.png" class="logo">
+            <h1 id="logo name">Zeller</h1>
             <ul id="sidemenu">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#about">About</a></li>

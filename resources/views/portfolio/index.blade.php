@@ -25,8 +25,8 @@
     <div id="hero" class="shapedividers_com-5974">
         <div class="container">
             <div class="hero-text">
-                <p>{{ $heroSections->occupation }}</p>
-                <h1>Hi, I'm <span>{{ $heroSections->name_title }}</span><br>{{ $heroSections->sub_title }}</h1>
+                <p>{{ $heroSections->occupation ?? 'Full Stack Developer'}}</p>
+                <h1>Hi, I'm <span>{{ $heroSections->name_title ?? 'Zeller Jim'}}</span><br>{{ $heroSections->sub_title ?? 'template'}}</h1>
             </div>
         </div>
     </div>
@@ -36,11 +36,11 @@
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="{{ $abouts->image_path }}">
+                    <img src="{{ $abouts->image_path ?? ' '}}">
                 </div>
                 <div class="about-col-2">
                     <h1 class="sub-title">About Me</h1>
-                    {{ $abouts->description }}
+                    {{ $abouts->description ?? 'lorem ipsum'}}
                     <div class="tab-titles">
                         <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
                         <p class="tab-links" onclick="opentab('experience')">Experience</p>
@@ -49,21 +49,21 @@
                     <div class="tab-contents active-tab" id="skills">
                         <ul>
                             @foreach ($skillLists as $skill)
-                                <li><span>{{ $skill->title }}</span><br>{{ $skill->description }}
+                                <li><span>{{ $skill->title ?? 'Java'}}</span><br>{{ $skill->description ?? 'I have decent experience with java'}}
                             @endforeach
                         </ul>
                     </div>
                     <div class="tab-contents" id="experience">
                         <ul>
                             @foreach ($experienceLists as $experience)
-                                <li><span>{{ $experience->title }}</span><br>{{ $experience->description }}
+                                <li><span>{{ $experience->title ?? 'School'}}</span><br>{{ $experience->description ?? 'I went to this school'}}
                             @endforeach
                         </ul>
                     </div>
                     <div class="tab-contents" id="education">
                         <ul>
                             @foreach ($educationLists as $education)
-                                <li><span>{{ $education->title }}</span><br>{{ $education->description }}
+                                <li><span>{{ $education->title ?? 'School again'}}</span><br>{{ $education->description ?? 'I went to this school'}}
                             @endforeach
                         </ul>
                     </div>
@@ -80,8 +80,8 @@
                 @foreach ($services as $service)
                     <div>
                         <i class="{{ $service->icon_path }}"></i>
-                        <h2>{{ $service->title }}</h2>
-                        <p>{{ $service->description }}</p>
+                        <h2>{{ $service->title ?? 'Web Development'}}</h2>
+                        <p>{{ $service->description ?? 'I do web development'}}</p>
                         <a href="#">Learn more</a>
                     </div>
                 @endforeach
@@ -95,10 +95,10 @@
             <div class="work-list">
                 @foreach ($portfolios as $portfolio)
                     <div class="work">
-                        <img src="{{ $portfolio->image_path }}">
+                        <img src="{{ $portfolio->image_path ?? ' '}}">
                         <div class="layer">
-                            <h3>{{ $portfolio->title }}</h3>
-                            <p>{{ $portfolio->description }}</p>
+                            <h3>{{ $portfolio->title ?? 'Insert title'}}</h3>
+                            <p>{{ $portfolio->description ?? 'Insert description'}}</p>
                             <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
@@ -113,8 +113,8 @@
             <div class="row">
                 <div class="contact-left">
                     <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa-solid fa-envelope"></i> {{ $contacts->email }}</p>
-                    <p><i class="fa-solid fa-square-phone"></i> {{ $contacts->phoneNumber }}</p>
+                    <p><i class="fa-solid fa-envelope"></i> {{ $contacts->email ?? 'zellebustamante@gmail.com'}}</p>
+                    <p><i class="fa-solid fa-square-phone"></i> {{ $contacts->phoneNumber ?? '09550725115'}}</p>
                     <div class="social-icons">
                         @foreach ($contactLinks as $contactLink)
                             <a href="{{ $contactLink->link }}"><i class="{{ $contactLink->icon_path }}"></i></a>
@@ -122,6 +122,7 @@
                     </div>
                     <a href="documents/my-cv.pdf" download class="btn btn2">Download CV</a>
                 </div>
+                
                 <div class="contact-right">
                     <form method="POST" action="{{ route('contact.store') }}">
                         @csrf
@@ -130,10 +131,10 @@
                         <textarea name="message" rows="6" placeholder="Your Message"></textarea>
                         <button type="submit" class="btn btn2">Submit</button>
                     </form>
-
                 </div>
             </div>
         </div>
+
 
     </div>
     {{-- Script for the about section tab-title selection --}}
