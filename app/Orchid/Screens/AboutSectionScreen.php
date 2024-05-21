@@ -55,7 +55,7 @@ class AboutSectionScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Button::make('Create New List Detail')
+            Button::make('Update About Details')
                 ->icon('pencil')
                 ->method('save'),
         ];
@@ -91,8 +91,9 @@ class AboutSectionScreen extends Screen
     public function save(Request $request)
     {
         $about = About::first();
-        $about->fill($request->input('about'));
         
+        $about->fill($request->input('about'));
+        dd($about);
         $about->save();
 
         Alert::info("Hero section updated successfully.");

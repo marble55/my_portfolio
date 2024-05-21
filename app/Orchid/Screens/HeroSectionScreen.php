@@ -81,11 +81,15 @@ class HeroSectionScreen extends Screen
     public function save(Request $request)
     {   
         // Retrieve the HeroSection model instance from the database
-        $heroSection = HeroSection::first();
+        $heroSection = HeroSection::firstOrCreate([
+            'occupation' => 'Zeller jim', 
+            'name_title' => 'temp', 
+            'sub_title' => 'temp'
+            ]);
         
         // Update the model instance with the new data from the request
         $heroSection->fill($request->input('hero'));
-    
+        
         // Save the updated model instance back to the database
         $heroSection->save();
     

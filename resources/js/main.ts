@@ -18,8 +18,12 @@ document.addEventListener('DOMContentLoaded', () : void => {
     }
 
     window.addEventListener('mousemove', (event : MouseEvent) : void => {
-        tgX = event.clientX;
-        tgY = event.clientY;
+        
+        const scrollX = window.scrollX;
+        const scrollY = window.scrollY;
+
+        tgX = event.clientX + scrollX - (interBubble.offsetWidth / 2);
+        tgY = event.clientY + scrollY - (interBubble.offsetHeight / 2);
     });
 
     move();

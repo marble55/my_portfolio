@@ -1,178 +1,743 @@
-<x-app>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="gradient-background">
-        <svg xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <filter id="goo">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18  -8"
-                        result="goo" />
-                    <feBlend in="SourceGraphic" in2="goo" />
-                </filter>
-            </defs>
-        </svg>    
-        <div class="gradients-container">
-            <div class="g1"></div>
-            <div class="g2"></div>
-            <div class="g3"></div>
-            <div class="g4"></div>
-            <div class="g5"></div>
-            <div class="interactive"></div>
-        </div>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ---------about--------- -->
-    <div id="hero" class="shapedividers_com-5974">
-        <div class="container">
-            <div class="hero-text">
-                <p>{{ $heroSections->occupation ?? 'Full Stack Developer'}}</p>
-                <h1>Hi, I'm <span>{{ $heroSections->name_title ?? 'Zeller Jim'}}</span><br>{{ $heroSections->sub_title ?? 'template'}}</h1>
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <!--=============== BOXICONS ===============-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href="{{ URL::asset('/assets/css/swiper-bundle.min.css') }}">
+
+    <!--=============== CSS ===============-->
+    @vite('resources/js/app.js');
+
+    <title> Zeler Jim Portfoliio </title>
+</head>
+
+<body>
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav_logo">{{ $heroSections->name_title ?? 'Zeller Jim' }} </a>
+
+            <div class="nav_menu">
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="#home" class="nav_link active_link">
+                            <i class='bx bx-home-alt'></i>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="#about" class="nav_link">
+                            <i class='bx bx-user'></i>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="#skills" class="nav_link">
+                            <i class='bx bxs-book-content'></i>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="#services" class="nav_link">
+                            <i class='bx bxs-book-content'></i>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="#work" class="nav_link">
+                            <i class='bx bx-briefcase'></i>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="#contact" class="nav_link">
+                            <i class='bx bx-envelope'></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </div>
-    <div></div>
-    <!-- ---------about--------- -->
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="about-col-1">
-                    <img src="{{ $abouts->image_path ?? ' '}}">
-                </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
-                    {{ $abouts->description ?? 'lorem ipsum'}}
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab('education')">Education</p>
-                    </div>
-                    <div class="tab-contents active-tab" id="skills">
-                        <ul>
-                            @foreach ($skillLists as $skill)
-                                <li><span>{{ $skill->title ?? 'Java'}}</span><br>{{ $skill->description ?? 'I have decent experience with java'}}
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="experience">
-                        <ul>
-                            @foreach ($experienceLists as $experience)
-                                <li><span>{{ $experience->title ?? 'School'}}</span><br>{{ $experience->description ?? 'I went to this school'}}
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="education">
-                        <ul>
-                            @foreach ($educationLists as $education)
-                                <li><span>{{ $education->title ?? 'School again'}}</span><br>{{ $education->description ?? 'I went to this school'}}
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
+
+            <!-- Theme change button -->
+            <i class='bx bx-moon' id="theme-button"></i>
+
+        </nav>
+    </header>
+
+    <!--=============== MAIN ===============-->
+    <main class="main ">
+
+
+        <!--=============== Bubble Background ===============-->
+        <div class="gradient-background">
+            <svg xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix"
+                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18  -8" result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                </defs>
+            </svg>
+            <div class="background gradients-container">
+                <div class="g1"></div>
+                <div class="g2"></div>
+                <div class="g3"></div>
+                <div class="g4"></div>
+                <div class="g5"></div>
+                {{-- <div class="g7"></div>
+                <div class="g8"></div>
+                <div class="g9"></div>
+                <div class="g10"></div> --}}
+                <div class="interactive"></div>
             </div>
-        </div>
-    </div>
-    <!-- ------------services------------ -->
-    
-    <div id="services">
-        <div class="container">
-            <h1 class="sub-title">My Services</h1>
-            <div class="services-list">
-                @foreach ($services as $service)
-                    <div>
-                        <i class="{{ $service->icon_path }}"></i>
-                        <h2>{{ $service->title ?? 'Web Development'}}</h2>
-                        <p>{{ $service->description ?? 'I do web development'}}</p>
-                        <a href="#">Learn more</a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <!-- ------------portfolio------------ -->
-    <div id="portfolio">
-        <div class="container">
-            <h1 class="sub-title">My Works</h1>
-            <div class="work-list">
-                @foreach ($portfolios as $portfolio)
-                    <div class="work">
-                        <img src="{{ $portfolio->image_path ?? ' '}}">
-                        <div class="layer">
-                            <h3>{{ $portfolio->title ?? 'Insert title'}}</h3>
-                            <p>{{ $portfolio->description ?? 'Insert description'}}</p>
-                            <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+
+            <!--=============== HOME ===============-->
+            <section class="home section" id="home">
+                <div class="home_container container grid">
+
+                    <div class="home_data">
+                        <span class="home_greeting">Hello, I'm</span>
+                        <h1 class="home_name"> {{ $heroSections->name_title ?? 'Zeller Jim' }}</h1>
+                        <h3 class="home_education"> {{ $heroSections->sub_title ?? 'Web Developer' }}</h3>
+
+                        <div class="home_buttons">
+                            <a download href="assets/pdf/Ansel-Cv.pdf" class="button button--ghost">
+                                Download CV
+                            </a>
+                            <a href="#about" class="button">About Me</a>
                         </div>
                     </div>
-                @endforeach
-            </div>
-            <a href="#" class="btn">See more</a>
-        </div>
-    </div>
-    <!-- --------------------contact------------------------- -->
-    <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa-solid fa-envelope"></i> {{ $contacts->email ?? 'zellebustamante@gmail.com'}}</p>
-                    <p><i class="fa-solid fa-square-phone"></i> {{ $contacts->phoneNumber ?? '09550725115'}}</p>
-                    <div class="social-icons">
-                        @foreach ($contactLinks as $contactLink)
-                            <a href="{{ $contactLink->link }}"><i class="{{ $contactLink->icon_path }}"></i></a>
-                        @endforeach
+
+                    <div class="home_handle">
+                        <img src="{{ URL::asset('assets/img/perfil.png') }}" alt class="home_img">
                     </div>
-                    <a href="documents/my-cv.pdf" download class="btn btn2">Download CV</a>
+
+                    <div class="home_social">
+                        <a href class="home_social-link">
+                            <i class='bx bxl-facebook-circle'></i>
+                        </a>
+                        <a href class="home_social-link">
+                            <i class='bx bxl-facebook-circle'></i>
+                        </a>
+                        <a href class="home_social-link">
+                            <i class='bx bxl-facebook-circle'></i>
+                        </a>
+                    </div>
+
+                    <a href="#about" class="home_scroll">
+                        <i class='bx bx-mouse home_scroll-icon'></i>
+                        <span class="home_scroll-name">Scroll Down</span>
+                    </a>
                 </div>
-                
-                <div class="contact-right">
-                    <form method="POST" action="{{ route('contact.store') }}">
-                        @csrf
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="message" rows="6" placeholder="Your Message"></textarea>
-                        <button type="submit" class="btn btn2">Submit</button>
-                    </form>
+            </section>
+
+            <!--=============== ABOUT ===============-->
+            <section class="about section" id="about">
+                <span class="section__subtitle">My Intro</span>
+                <h2 class="section__title">About Me</h2>
+
+                <div class="about_container container grid">
+                    <img src="{{ $abouts->image_path ?? URL::asset('assets/img/about.jpg') }}" alt class="about_img">
+
+                    <div class="about_data">
+                        <div class="about_info">
+
+                            <div class="about_box">
+                                <i class='bx bx-award about_icon'></i>
+                                <h3 class="about_title">Experience</h3>
+                                <span class="about_subtitle">8 Years Working</span>
+                            </div>
+
+                            <div class="about_box">
+                                <i class='bx bx-briefcase-alt-2 about_icon'></i>
+                                <h3 class="about_title">Completed</h3>
+                                <span class="about_subtitle">48+ Projects</span>
+                            </div>
+
+                            <div class="about_box">
+                                <i class='bx bx-support about_icon'></i>
+                                <h3 class="about_title">Support</h3>
+                                <span class="about_subtitle">Online 24/7</span>
+                            </div>
+
+                        </div>
+
+                        <p class="about_description">
+                            {{ $abouts->description ??
+                                '
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Veniam libero consequuntur nobis laboriosam temporibus
+                                laborum eaque, praesentium rem nostrum deserunt
+                                inventore sunt! Recusandae veritatis a, aperiam aut
+                                ipsam officiis vero?' }}
+                        </p>
+                        <a href="#contact" class="button">Contact Me</a>
+                    </div>
                 </div>
-            </div>
+
+
+            </section>
+
+
+            <!--=============== SKILLS ===============-->
+            <section class="skills section" id="skills">
+                <span class="section__subtitle">My abilities</span>
+                <h2 class="section__title">My Experience</h2>
+
+                <div class="skills_container container grid">
+                    <div class="skills_content">
+                        <h3 class="skills_title">Frontend developer</h3>
+
+                        <div class="skills_box">
+                            <div class="skills_group">
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check'></i>
+
+                                    <div>
+                                        <h3 class="skills_name">HTML</h3>
+                                        <span class="skills_level">Basic</span>
+                                    </div>
+                                </div>
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check '></i>
+
+                                    <div>
+                                        <h3 class="skills_name">CSS</h3>
+                                        <span class="skills_level">Advanced</span>
+                                    </div>
+                                </div>
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check '></i>
+
+                                    <div>
+                                        <h3 class="skills_name">Javascript</h3>
+                                        <span class="skills_level">Intermediate</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skills_group">
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check '></i>
+
+                                    <div>
+                                        <h3 class="skills_name">Bootstap</h3>
+                                        <span class="skills_level">Intermediate</span>
+                                    </div>
+                                </div>
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check '></i>
+
+                                    <div>
+                                        <h3 class="skills_name">Git</h3>
+                                        <span class="skills_level">Beginner</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills_content">
+                        <h3 class="skills_title">Backend developer</h3>
+
+                        <div class="skills_box">
+                            <div class="skills_group">
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check '></i>
+
+                                    <div>
+                                        <h3 class="skills_name">PHP</h3>
+                                        <span class="skills_level">Basic</span>
+                                    </div>
+                                </div>
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check '></i>
+
+                                    <div>
+                                        <h3 class="skills_name">Laravel</h3>
+                                        <span class="skills_level">Advanced</span>
+                                    </div>
+                                </div>
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check '></i>
+
+                                    <div>
+                                        <h3 class="skills_name">Javascript</h3>
+                                        <span class="skills_level">Intermediate</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skills_group">
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check '></i>
+
+                                    <div>
+                                        <h3 class="skills_name">Bootstap</h3>
+                                        <span class="skills_level">Intermediate</span>
+                                    </div>
+                                </div>
+
+                                <div class="skills_data">
+                                    <i class='bx bx-badge-check '></i>
+
+                                    <div>
+                                        <h3 class="skills_name">Git</h3>
+                                        <span class="skills_level">Beginner</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--=============== SERVICES ===============-->
+            <section class="services section" id="services">
+                <span class="section__subtitle">My Services</span>
+                <h2 class="section__title">What I Offer</h2>
+
+                <div class="services_container container grid">
+
+                    @foreach ($services as $service)
+                        <div class="services_card">
+                            <h3 class="services_title">{{ $services->title ?? 'Product <br> Designer' }}</h3>
+
+                            <span class="services_button">
+                                See more <i class='bx bx-right-arrow-alt services_icon'></i>
+                            </span>
+
+                            <div class="services_modal">
+                                <div class="services_modal-content">
+                                    <i class='bx bx-x services_modal-close'></i>
+
+                                    <h3 class="services_modal-title">{{ $services->title ?? 'Product Designer' }}</h3>
+                                    <p class="services_modal-description">
+                                        {{ $services->description }}
+                                    </p>
+
+                                    {{-- <ul class="services_modal-list">
+                                        <li class="services_modal-item">
+                                            <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                            <p class="services_modal-item">
+                                                I develop the user interface.
+                                            </p>
+                                        </li>
+
+                                        <li class="services_modal-item">
+                                            <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                            <p class="services_modal-item">
+                                                Web page development.
+                                            </p>
+                                        </li>
+
+                                        <li class="services_modal-item">
+                                            <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                            <p class="services_modal-item">
+                                                I create ux element interactions.
+                                            </p>
+                                        </li>
+                                    </ul> --}}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <div class="services_card">
+                        <h3 class="services_title">Product <br> Designer</h3>
+
+                        <span class="services_button">
+                            See more <i class='bx bx-right-arrow-alt services_icon'></i>
+                        </span>
+
+                        <div class="services_modal">
+                            <div class="services_modal-content">
+                                <i class='bx bx-x services_modal-close'></i>
+
+                                <h3 class="services_modal-title">Product
+                                    Designer</h3>
+                                <p class="services_modal-description">
+                                    Service with more than 3 years of
+                                    experience.
+                                    Providing quality work to clients and
+                                    companies.
+                                </p>
+
+                                <ul class="services_modal-list">
+                                    <li class="services_modal-item">
+                                        <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                        <p class="services_modal-item">
+                                            I develop the user interface.
+                                        </p>
+                                    </li>
+
+                                    <li class="services_modal-item">
+                                        <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                        <p class="services_modal-item">
+                                            Web page development.
+                                        </p>
+                                    </li>
+
+                                    <li class="services_modal-item">
+                                        <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                        <p class="services_modal-item">
+                                            I create ux element interactions.
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- <div class="services_card">
+                        <h3 class="services_title">Visual <br> Designer</h3>
+
+                        <span class="services_button">
+                            See more <i class='bx bx-right-arrow-alt services_icon '></i>
+                        </span>
+
+                        <div class="services_modal">
+                            <div class="services_modal-content">
+                                <i class='bx bx-x services_modal-close'></i>
+
+                                <h3 class="services_modal-title">Visual
+                                    Designer</h3>
+                                <p class="services_modal-description">
+                                    Service with more than 3 years of
+                                    experience.
+                                    Providing quality work to clients and
+                                    companies.
+                                </p>
+
+                                <ul class="services_modal-list">
+                                    <li class="services_modal-item">
+                                        <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                        <p class="services_modal-item">
+                                            I develop the user interface.
+                                        </p>
+                                    </li>
+
+                                    <li class="services_modal-item">
+                                        <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                        <p class="services_modal-item">
+                                            Web page development.
+                                        </p>
+                                    </li>
+
+                                    <li class="services_modal-item">
+                                        <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                        <p class="services_modal-item">
+                                            I create ux element interactions.
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="services_card">
+                        <h3 class="services_title">Backend <br> Developer</h3>
+
+                        <span class="services_button">
+                            See more <i class='bx bx-right-arrow-alt services_icon'></i>
+                        </span>
+
+                        <div class="services_modal">
+                            <div class="services_modal-content">
+                                <i class='bx bx-x services_modal-close'></i>
+
+                                <h3 class="services_modal-title">Visual
+                                    Designer</h3>
+                                <p class="services_modal-description">
+                                    Service with more than 3 years of
+                                    experience.
+                                    Providing quality work to clients and
+                                    companies.
+                                </p>
+
+                                <ul class="services_modal-list">
+                                    <li class="services_modal-item">
+                                        <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                        <p class="services_modal-item">
+                                            I develop the user interface.
+                                        </p>
+                                    </li>
+
+                                    <li class="services_modal-item">
+                                        <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                        <p class="services_modal-item">
+                                            Web page development.
+                                        </p>
+                                    </li>
+
+                                    <li class="services_modal-item">
+                                        <i class='bx bxs-check-square services_modal-icon'></i>
+
+                                        <p class="services_modal-item">
+                                            I create ux element interactions.
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+            </section>
+
+            <!--=============== WORK ===============-->
+            <section class="work section" id="work">
+                <span class="section__subtitle">My Portfolio</span>
+                <h2 class="section__title">Recent Works</h2>
+
+                <div class="work_filters">
+                    <span class="work_item active-work" data-filter='all'>All</span>
+                    <span class="work_item" data-filter='.web'>Web</span>
+                    <span class="work_item" data-filter='.mobile'>Mobile</span>
+                    <span class="work_item" data-filter='.design'>Design</span>
+                </div>
+
+                <div class="work_container container grid">
+
+                    @foreach ($portfolios as $portfolio)
+                        <div class="work_card web">
+                            <img src="assets/img/work1.jpg" alt class="work_img">
+                            <h3 class="work_title">{{ $portfolio->title ?? 'Web design' }}</h3>
+                            <a href="#" class="work_button">
+                                Read More <i class='bx bx-right-arrow-alt services_icon'></i>
+                            </a>
+                        </div>
+                    @endforeach
+                    <div class="work_card mobile">
+                        <img src="assets/img/work2.jpg" alt class="work_img">
+                        <h3 class="work_title">App movil</h3>
+                        <a href="#" class="work_button">
+                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
+                        </a>
+
+                    </div>
+
+                    <div class="work_card mobile">
+                        <img src="assets/img/work2.jpg" alt class="work_img">
+                        <h3 class="work_title">App movil</h3>
+                        <a href="#" class="work_button">
+                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
+                        </a>
+
+                    </div>
+
+                    <div class="work_card mobile">
+                        <img src="assets/img/work2.jpg" alt class="work_img">
+                        <h3 class="work_title">App movil</h3>
+                        <a href="#" class="work_button">
+                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
+                        </a>
+
+                    </div>
+
+                    <div class="work_card mobile">
+                        <img src="assets/img/work2.jpg" alt class="work_img">
+                        <h3 class="work_title">App movil</h3>
+                        <a href="#" class="work_button">
+                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
+                        </a>
+
+                    </div>
+
+                    <div class="work_card mobile">
+                        <img src="assets/img/work2.jpg" alt class="work_img">
+                        <h3 class="work_title">App movil</h3>
+                        <a href="#" class="work_button">
+                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
+                        </a>
+
+                    </div>
+
+                    <div class="work_card design">
+                        <img src="assets/img/work3.jpg" alt class="work_img">
+                        <h3 class="work_title">Brand design</h3>
+                        <a href="#" class="work_button">
+                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
+                        </a>
+
+                    </div>
+
+                    <div class="work_card mobile">
+                        <img src="assets/img/work4.jpg" alt class="work_img">
+                        <h3 class="work_title">Web design</h3>
+                        <a href="#" class="work_button">
+                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+
+            <!--=============== TESTIMONIALS ===============-->
+            <!-- <section class="testimonial section">
+
+            </section> -->
+
+            <!--=============== CONTACT ===============-->
+            <section class="contact section" id="contact">
+                <span class="section__subtitle">Get in touch</span>
+                <h2 class="section__title">Contact Me</h2>
+
+                <div class="contact_container container grid">
+                    <div class="contact_info">
+
+                        <h3 class="contact_title">Talk to me</h3>
+                        <div class="contact_card">
+                            <i class='bx bx-envelope contact_card-icon'></i>
+                            <h3 class="contact_card-title">Email</h3>
+                            <span class="contact_card-data">user@gmail.com</span>
+
+                            <a href="" target="_blank" class="contact_button">
+                                Write me <i class='bx bx-mail-send contact_button-icon'></i>
+                            </a>
+                        </div>
+
+                        <div class="contact_card">
+                            <i class='bx bxl-messenger contact_card-icon'></i>
+                            <h3 class="contact_card-title">Messenger</h3>
+                            <span class="contact_card-data">user.fb123</span>
+
+                            <a href="" target="_blank" class="contact_button">
+                                Write me <i class='bx bx-mail-send contact_button-icon'></i>
+                            </a>
+                        </div>
+
+                        <div class="contact_card">
+                            <i class='bx bx-envelope contact_card-icon'></i>
+                            <h3 class="contact_card-title">Email</h3>
+                            <span class="contact_card-data">user@gmail.com</span>
+
+                            <a href="" target="_blank" class="contact_button">
+                                Write me <i class='bx bx-mail-send contact_button-icon'></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact_content">
+                        <h3 class="contact_title">Write me your project</h3>
+
+                        <form action="#" class="contact_form">
+                            <div class="contact_form-div">
+                                <label for="" class="contact_form-tag">Name</label>
+                                <input type="text" required placeholder="Ex:Jim" class="contact_form-input">
+                            </div>
+
+                            <div class="contact_form-div">
+                                <label for="" class="contact_form-tag">Email</label>
+                                <input type="email" required placeholder="example@email.com"
+                                    class="contact_form-input">
+                            </div>
+
+                            <div class="contact_form-div contact_form-area">
+                                <label for="" class="contact_form-tag">Message</label>
+                                <textarea name="" id="" cols="30" rows="10" class="contact_form-input"></textarea>
+                            </div>
+
+                            <button class="button">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
         </div>
 
 
-    </div>
-    {{-- Script for the about section tab-title selection --}}
-    <script>
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
+    </main>
 
-        function opentab(tabname) {
-            for (tablink of tablinks) {
-                tablink.classList.remove("active-link");
-            }
-            for (tabcontent of tabcontents) {
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        };
-    </script>
-    {{-- Script for the mobile navigation bar --}}
-    <script>
-        var sidemenu = document.getElementById("sidemenu");
+    <!--=============== FOOTER ===============-->
+    <footer class="footer">
+        <div class="footer_container container">
+            <h1 class="footer_title">Ansel</h1>
 
-        function openmenu() {
-            sidemenu.style.right = "0px";
-        }
+            <ul class="footer_list">
+                <li>
+                    <a href="#about" class="footer_link">About</a>
+                </li>
+                <li>
+                    <a href="#services" class="footer_link">Services</a>
+                </li>
+                <li>
+                    <a href="#work" class="footer_link">Projects</a>
+                </li>
+            </ul>
 
-        function closemenu() {
-            sidemenu.style.right = "-200px";
-        }
-    </script>
-    {{-- Script for the parallax effect
-    <script>
-        let page = document.getElementById("about");
+            <ul class="footer_social">
+                <a href="#" target="_blank" class="footer_social-link">
+                    <i class='bx bxl-reddit'></i>
+                </a>
+                <a href="#" target="_blank" class="footer_social-link">
+                    <i class='bx bxl-facebook-circle'></i>
+                </a>
+                <a href="#" target="_blank" class="footer_social-link">
+                    <i class='bx bxl-reddit'></i>
+                </a>
+                <a href="#" target="_blank" class="footer_social-link">
+                    <i class='bx bxl-reddit'></i>
+                </a>
+            </ul>
 
-        window.addEventListener('scroll', () => {
-            let value = window.scrollY;
+            <span class="footer_copy"> Copyright@Jim</span>
+        </div>
+    </footer>
 
-            page.style.marginTop = value * -0.5 + 'px';
-        })
+    <!--=============== SCROLLREVEAL ===============-->
+    <script src="{{ URL::asset('assets/js/scrollreveal.min.js') }}"></script>
+
+    <!--=============== SWIPER JS ===============-->
+    {{-- <script>
+        // Get the full height of the document including overflow
+        const bodyHeight = document.body.scrollHeight;
+        const htmlHeight = document.documentElement.scrollHeight;
+
+        // Use the greater value to ensure cross-browser compatibility
+        const fullPageHeight = Math.max(bodyHeight, htmlHeight);
+
+        // Set the height of the element directly using JavaScript
+        document.querySelector('.gradient-background').style.height = `${fullPageHeight}px`;
+
+        console.log('Full Page Height:', fullPageHeight);
+        console.log('Body Height:', bodyHeight);
+        console.log('Html Height:', htmlHeight);
     </script> --}}
-</x-app>
+
+    <!--=============== MIXITUP FILTER ===============-->
+    <script src="{{ URL::asset('assets/js/mixitup.min.js') }}"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="{{ URL::asset('/assets/js/main.js') }}"></script>
+</body>
+
+</html>

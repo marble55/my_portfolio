@@ -25,7 +25,7 @@ class ServicesScreen extends Screen
     public function query(): iterable
     {
         return [
-            'services' => Service::get()
+            'services' => Service::all()
         ];
     }
 
@@ -153,7 +153,7 @@ class ServicesScreen extends Screen
 
         $services->update([
             'title' => $request->input('services.title'),
-            'description' => $request->input('services.title'),
+            'description' => $request->input('services.description'),
             'icon_path' => $request->input('services.icon_path')
         ]);
     }

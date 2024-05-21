@@ -147,10 +147,9 @@ class AboutListScreen extends Screen
         // $request->validate([
         //     'task.name' => 'required|max:225'
         // ]);
-
         $aboutList->update([
             'title' => $request->input('aboutList.title'),
-            'description' => $request->input('aboutList.title')
+            'description' => $request->input('aboutList.description')
         ]);
     }
 }
