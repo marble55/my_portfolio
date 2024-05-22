@@ -14,6 +14,8 @@ Route::resource('hero', HeroSectionController::class)
 Route::resource('message', ContactMessageController::class)
     ->only(['store', 'destroy']);
 
-Route::post('contact', [ContactMessageController::class, 'store'])->name('contact.store');
+// Route::post('contact', [ContactMessageController::class, 'store'])->name('contact.store');
+
+Route::post('contact-send', [ContactMessageController::class, 'sendEmail'])->name('contact.send');
 
 require __DIR__ . '/auth.php';

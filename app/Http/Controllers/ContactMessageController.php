@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactMessageRequest;
+use App\Mail\ContactMessageMail;
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ContactMessageController extends Controller
 {
@@ -43,35 +45,14 @@ class ContactMessageController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ContactMessage $contactMessage)
-    {
-        //
-    }
+    public function sendEmail(ContactMessageRequest $request){
+        
+        $values = $request->all();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ContactMessage $contactMessage)
-    {
-        //
-    }
+        dd($values);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ContactMessage $contactMessage)
-    {
-        //
-    }
+        Mail::to("zellerbustamante@gmail.com")->send(new ContactMessageMail());
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ContactMessage $contactMessage)
-    {
-        //
+        dd("message sent :)");
     }
 }

@@ -4,19 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!--=============== FAVICON ===============-->
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
-
+    <link rel="shortcut icon" href="{{ URL::asset('assets/img/favicon.png') }}" type="image/x-icon">
     <!--=============== BOXICONS ===============-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <!--=============== SWIPER CSS ===============-->
     <link rel="stylesheet" href="{{ URL::asset('/assets/css/swiper-bundle.min.css') }}">
-
     <!--=============== CSS ===============-->
-    @vite('resources/js/app.js');
-
+    @vite('resources/js/app.js')
     <title> Zeler Jim Portfoliio </title>
 </head>
 
@@ -320,7 +315,7 @@
 
                     @foreach ($services as $service)
                         <div class="services_card">
-                            <h3 class="services_title">{{ $services->title ?? 'Product <br> Designer' }}</h3>
+                            <h3 class="services_title">{{ 'Product <br> Designer' }}</h3>
 
                             <span class="services_button">
                                 See more <i class='bx bx-right-arrow-alt services_icon'></i>
@@ -330,9 +325,9 @@
                                 <div class="services_modal-content">
                                     <i class='bx bx-x services_modal-close'></i>
 
-                                    <h3 class="services_modal-title">{{ $services->title ?? 'Product Designer' }}</h3>
+                                    <h3 class="services_modal-title">{{ $service->title ?? 'Product Designer' }}</h3>
                                     <p class="services_modal-description">
-                                        {{ $services->description }}
+                                        {{ $service->description }}
                                     </p>
 
                                     {{-- <ul class="services_modal-list">
@@ -650,7 +645,9 @@
                     <div class="contact_content">
                         <h3 class="contact_title">Write me your project</h3>
 
-                        <form action="#" class="contact_form">
+                        <form method="POST" action="{{ route('contact.send') }}" class="contact_form">
+                            @csrf
+                            @method('POST')
                             <div class="contact_form-div">
                                 <label for="" class="contact_form-tag">Name</label>
                                 <input type="text" required placeholder="Ex:Jim" class="contact_form-input">

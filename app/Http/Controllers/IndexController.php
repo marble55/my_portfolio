@@ -24,11 +24,11 @@ class IndexController extends Controller
         $skillLists = AboutList::where('category', '=', 'Skill')->get();
         $experienceLists = AboutList::where('category', '=', 'Experience')->get();
         $educationLists = AboutList::where('category', '=', 'Education')->get();
-        $services = Service::get();
+        $services = Service::all();
         $portfolios = Portfolio::get();
         $contacts = Contact::first();
         $contactLinks = ContactLink::get();
-        
+      
         return view('portfolio.index', compact(
             'heroSections', 
             'abouts', 
