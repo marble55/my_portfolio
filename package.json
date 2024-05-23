@@ -13,5 +13,8 @@
         "typescript": "^5.4.5",
         "vite": "^5.0",
         "vite-plugin-inspect": "^0.8.4"
+    },
+    "dependencies": {
+        "toastr": "^2.1.4"
     }
 }

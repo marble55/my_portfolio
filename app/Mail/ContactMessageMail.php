@@ -15,14 +15,16 @@ class ContactMessageMail extends Mailable
 
     private $name;
     private $email;
-    private $message;
+    private $messageText;
 
     /**
      * Create a new message instance.
      */
     public function __construct(array $values)
     {
-        $name = $values[''];
+        $this->name = $values['name'];
+        $this->email = $values['email'];
+        $this->messageText = $values['message'];
     }
 
     /**
@@ -31,7 +33,7 @@ class ContactMessageMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'You got a new message',
+            subject: 'New Message From Portfolio',
         );
     }
 
@@ -40,8 +42,15 @@ class ContactMessageMail extends Mailable
      */
     public function content(): Content
     {
+        // dd($this->messageText);
+
         return new Content(
             view: 'mail.contact-message',
+            with: [
+                'name' => $this->name,
+                'email' => $this->email,
+                'messageText'=> $this->messageText,
+            ],
         );
     }
 

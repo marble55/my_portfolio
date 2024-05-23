@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{{ URL::asset('/assets/css/swiper-bundle.min.css') }}">
     <!--=============== CSS ===============-->
     @vite('resources/js/app.js')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+        integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title> Zeler Jim Portfoliio </title>
 </head>
 
@@ -62,8 +65,35 @@
             </div>
 
             <!-- Theme change button -->
-            <i class='bx bx-moon' id="theme-button"></i>
+            @if (session()->has('message'))
+                <span id="inform-notification">Your Message Has Been Sent :)</span>
+            @endif
 
+            @if (session()->has('error'))
+                <span id="error-notification">{{ session('error') }}</span>
+            @endif
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Function to remove an element after a specified delay
+                    function removeElementAfterDelay(elementId, delay) {
+                        setTimeout(function() {
+                            var element = document.getElementById(elementId);
+                            if (element) {
+                                element.style.transition = "opacity 1s";
+                                element.style.opacity = 0;
+                                setTimeout(function() {
+                                    element.remove();
+                                }, 1000); // Match this duration to the transition time for smooth removal
+                            }
+                        }, delay);
+                    }
+            
+                    // Remove the notification spans after 5 seconds (5000 milliseconds)
+                    removeElementAfterDelay('inform-notification', 5000);
+                    removeElementAfterDelay('error-notification', 5000);
+                });
+            </script>
         </nav>
     </header>
 
@@ -170,11 +200,11 @@
                         <p class="about_description">
                             {{ $abouts->description ??
                                 '
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Veniam libero consequuntur nobis laboriosam temporibus
-                                laborum eaque, praesentium rem nostrum deserunt
-                                inventore sunt! Recusandae veritatis a, aperiam aut
-                                ipsam officiis vero?' }}
+                                                                                                                                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                                                                                                                            Veniam libero consequuntur nobis laboriosam temporibus
+                                                                                                                                                                            laborum eaque, praesentium rem nostrum deserunt
+                                                                                                                                                                            inventore sunt! Recusandae veritatis a, aperiam aut
+                                                                                                                                                                            ipsam officiis vero?' }}
                         </p>
                         <a href="#contact" class="button">Contact Me</a>
                     </div>
@@ -650,18 +680,19 @@
                             @method('POST')
                             <div class="contact_form-div">
                                 <label for="" class="contact_form-tag">Name</label>
-                                <input type="text" required placeholder="Ex:Jim" class="contact_form-input">
+                                <input name="name" type="text" required placeholder="Ex:Jim"
+                                    class="contact_form-input">
                             </div>
 
                             <div class="contact_form-div">
                                 <label for="" class="contact_form-tag">Email</label>
-                                <input type="email" required placeholder="example@email.com"
+                                <input name="email" type="email" required placeholder="example@email.com"
                                     class="contact_form-input">
                             </div>
 
                             <div class="contact_form-div contact_form-area">
-                                <label for="" class="contact_form-tag">Message</label>
-                                <textarea name="" id="" cols="30" rows="10" class="contact_form-input"></textarea>
+                                <label for="message" class="contact_form-tag">Message</label>
+                                <textarea name="message" id="" cols="30" rows="10" class="contact_form-input"></textarea>
                             </div>
 
                             <button class="button">Send Message</button>
@@ -735,6 +766,10 @@
 
     <!--=============== MAIN JS ===============-->
     <script src="{{ URL::asset('/assets/js/main.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>

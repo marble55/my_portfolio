@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ContactMessageRequest extends FormRequest
 {
@@ -22,9 +23,14 @@ class ContactMessageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|alpha_num',
-            'email' => 'required|email|max:255',
+            'name' => 'required|string|max:30',
+            'email' => 'required|email|max:50',
             'message' => 'required|string|max:255',
         ];
+    }
+
+    public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator){
+        throw new HttpResponseException(
+            redirect()->route('index')->with('error', $validator->errors()->first()));
     }
 }

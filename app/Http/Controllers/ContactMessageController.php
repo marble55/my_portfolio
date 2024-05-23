@@ -48,11 +48,10 @@ class ContactMessageController extends Controller
     public function sendEmail(ContactMessageRequest $request){
         
         $values = $request->all();
+        // dd($request->input('message'));
+        Mail::to("zellerbustamante@gmail.com")->send(new ContactMessageMail($values));
 
-        dd($values);
+        return redirect()->route('index')->with('message', 'Your message here');
 
-        Mail::to("zellerbustamante@gmail.com")->send(new ContactMessageMail());
-
-        dd("message sent :)");
     }
 }
