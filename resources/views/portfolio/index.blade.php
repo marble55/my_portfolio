@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="{{ URL::asset('assets/img/favicon.png') }}" type="image/x-icon">
     <!--=============== BOXICONS ===============-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href="https://unpkg.com/micromodal/dist/micromodal.min.js">
     <!--=============== SWIPER CSS ===============-->
     <link rel="stylesheet" href="{{ URL::asset('/assets/css/swiper-bundle.min.css') }}">
     <!--=============== CSS ===============-->
@@ -88,7 +90,7 @@
                             }
                         }, delay);
                     }
-            
+
                     // Remove the notification spans after 5 seconds (5000 milliseconds)
                     removeElementAfterDelay('inform-notification', 5000);
                     removeElementAfterDelay('error-notification', 5000);
@@ -99,8 +101,6 @@
 
     <!--=============== MAIN ===============-->
     <main class="main ">
-
-
         <!--=============== Bubble Background ===============-->
         <div class="gradient-background">
             <svg xmlns="http://www.w3.org/2000/svg">
@@ -200,11 +200,11 @@
                         <p class="about_description">
                             {{ $abouts->description ??
                                 '
-                                                                                                                                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                                                                                                                            Veniam libero consequuntur nobis laboriosam temporibus
-                                                                                                                                                                            laborum eaque, praesentium rem nostrum deserunt
-                                                                                                                                                                            inventore sunt! Recusandae veritatis a, aperiam aut
-                                                                                                                                                                            ipsam officiis vero?' }}
+                                                                                                                                                                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                                                                                                                                                        Veniam libero consequuntur nobis laboriosam temporibus
+                                                                                                                                                                                                        laborum eaque, praesentium rem nostrum deserunt
+                                                                                                                                                                                                        inventore sunt! Recusandae veritatis a, aperiam aut
+                                                                                                                                                                                                        ipsam officiis vero?' }}
                         </p>
                         <a href="#contact" class="button">Contact Me</a>
                     </div>
@@ -553,77 +553,21 @@
 
                 <div class="work_container container grid">
 
-                    @foreach ($portfolios as $portfolio)
-                        <div class="work_card web">
-                            <img src="assets/img/work1.jpg" alt class="work_img">
-                            <h3 class="work_title">{{ $portfolio->title ?? 'Web design' }}</h3>
-                            <a href="#" class="work_button">
-                                Read More <i class='bx bx-right-arrow-alt services_icon'></i>
-                            </a>
-                        </div>
-                    @endforeach
-                    <div class="work_card mobile">
-                        <img src="assets/img/work2.jpg" alt class="work_img">
-                        <h3 class="work_title">App movil</h3>
-                        <a href="#" class="work_button">
-                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
-                        </a>
-
-                    </div>
-
-                    <div class="work_card mobile">
-                        <img src="assets/img/work2.jpg" alt class="work_img">
-                        <h3 class="work_title">App movil</h3>
-                        <a href="#" class="work_button">
-                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
-                        </a>
-
-                    </div>
-
-                    <div class="work_card mobile">
-                        <img src="assets/img/work2.jpg" alt class="work_img">
-                        <h3 class="work_title">App movil</h3>
-                        <a href="#" class="work_button">
-                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
-                        </a>
-
-                    </div>
-
-                    <div class="work_card mobile">
-                        <img src="assets/img/work2.jpg" alt class="work_img">
-                        <h3 class="work_title">App movil</h3>
-                        <a href="#" class="work_button">
-                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
-                        </a>
-
-                    </div>
-
-                    <div class="work_card mobile">
-                        <img src="assets/img/work2.jpg" alt class="work_img">
-                        <h3 class="work_title">App movil</h3>
-                        <a href="#" class="work_button">
-                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
-                        </a>
-
-                    </div>
-
-                    <div class="work_card design">
-                        <img src="assets/img/work3.jpg" alt class="work_img">
-                        <h3 class="work_title">Brand design</h3>
-                        <a href="#" class="work_button">
-                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
-                        </a>
-
-                    </div>
-
-                    <div class="work_card mobile">
-                        <img src="assets/img/work4.jpg" alt class="work_img">
+                    <div class="work_card web">
+                        <img src="assets/img/work1.jpg" alt class="work_img">
                         <h3 class="work_title">Web design</h3>
-                        <a href="#" class="work_button">
-                            Demo <i class='bx bx-right-arrow-alt work_icon'></i>
-                        </a>
-
+                        <span class="work_button">
+                            Read More <i class='bx bx-right-arrow-alt services_icon'></i>
+                        </span>
+                        <div class="work_modal">
+                            <div class="work_modal-content">
+                                <i class='bx bx-x work_modal-close'></i>
+                                <h3 class="work_modal-title">Web design</h3>
+                                <p class="work_modal-description">This is the description for the web design.</p>
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
             </section>
 
@@ -770,6 +714,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
 
 </html>
