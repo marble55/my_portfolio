@@ -18,7 +18,7 @@ const modalViews = document.querySelectorAll('.services_modal'),
 
 let currentModal = null;
 
-let openModal = function(modalClick) {
+let openModal = function (modalClick) {
     currentModal = modalViews[modalClick];
     console.log('Opening modal:', currentModal); // Log to see which modal is being opened
     currentModal.classList.add('active-modal');
@@ -26,7 +26,7 @@ let openModal = function(modalClick) {
     centerModal(currentModal);
 };
 
-let closeModal = function() {
+let closeModal = function () {
     if (currentModal) {
         console.log('Closing modal:', currentModal); // Log to see which modal is being closed
         currentModal.classList.remove('active-modal');
@@ -35,12 +35,12 @@ let closeModal = function() {
     }
 };
 
-let centerModal = function(modal) {
-    const scrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-    const modalHeight = modal.offsetHeight;
-    modal.style.top = `${scrollY + (viewportHeight / 2) - (modalHeight / 2)}px`;
-};
+// let centerModal = function (modal) {
+//     const scrollY = window.scrollY;
+//     const viewportHeight = window.innerHeight;
+//     const modalHeight = modal.offsetHeight;
+//     modal.style.top = `${scrollY + (viewportHeight / 2) - (modalHeight / 2)}px`;
+// };
 
 modalBtns.forEach((mb, i) => {
     mb.addEventListener('click', (event) => {
@@ -100,6 +100,16 @@ linkWork.forEach(l => l.addEventListener('click', activeWork))
 
 /*=============== SWIPER TESTIMONIAL ===============*/
 
+let swiperSkills = new Swiper(".skills_container", {
+    spaceBetween: 24,
+    loop:true,
+    grabCursor: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+})
+
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')
 
@@ -120,10 +130,6 @@ const scrollActive = () => {
     })
 }
 window.addEventListener('scroll', scrollActive)
-
-
-/*=============== LIGHT DARK THEME ===============*/
-
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const hsr = ScrollReveal({
@@ -165,52 +171,139 @@ sr.reveal('.about_description', { origin: 'right', distance: '20px', delay: 1000
 
 
 /*=============== WORK MODAL ===============*/
-const workModals = document.querySelectorAll('.work_modal'),
-    readMoreLinks = document.querySelectorAll('.work_button'),
-    workCloseButtons = document.querySelectorAll('.work_modal-close');
+ // Work modal logic
+ const workModals = document.querySelectorAll('.work_modal'),
+ readMoreLinks = document.querySelectorAll('.work_button'),
+ workCloseButtons = document.querySelectorAll('.work_modal-close');
 
 let currentWorkModal = null;
 
-let openWorkModal = function(modalClick) {
-    currentWorkModal = workModals[modalClick];
-    console.log('Opening work modal:', currentWorkModal); // Log to see which modal is being opened
-    currentWorkModal.classList.add('active-modal');
-    document.body.style.overflow = 'hidden';  // Disable background scrolling
-    centerModal(currentWorkModal);
+let openWorkModal = function (modalClick) {
+ currentWorkModal = workModals[modalClick];
+ console.log('Opening work modal:', currentWorkModal); // Log to see which modal is being opened
+ currentWorkModal.classList.add('active-modal');
+ document.body.style.overflow = 'hidden';  // Disable background scrolling
+ document.body.classList.add('hide-cursor');  // Hide cursor and follower
 };
 
-let closeWorkModal = function() {
-    if (currentWorkModal) {
-        console.log('Closing work modal:', currentWorkModal); // Log to see which modal is being closed
-        currentWorkModal.classList.remove('active-modal');
-        document.body.style.overflow = '';  // Enable background scrolling
-        currentWorkModal = null;
-    }
+let closeWorkModal = function () {
+ if (currentWorkModal) {
+     console.log('Closing work modal:', currentWorkModal); // Log to see which modal is being closed
+     currentWorkModal.classList.remove('active-modal');
+     document.body.style.overflow = '';  // Enable background scrolling
+     document.body.classList.remove('hide-cursor');  // Show cursor and follower
+     currentWorkModal = null;
+ }
 };
 
 readMoreLinks.forEach((link, i) => {
-    link.addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent default link behavior
-        event.stopPropagation(); // Stop propagation to prevent window click event
-        openWorkModal(i);
-    });
+ link.addEventListener('click', (event) => {
+     event.preventDefault(); // Prevent default link behavior
+     event.stopPropagation(); // Stop propagation to prevent window click event
+     openWorkModal(i);
+ });
 });
 
 workCloseButtons.forEach((wcb) => {
-    wcb.addEventListener('click', closeWorkModal);
+ wcb.addEventListener('click', closeWorkModal);
 });
 
 // Close modal when clicking outside
 window.addEventListener('click', (event) => {
-    if (currentWorkModal && !currentWorkModal.querySelector('.work_modal-content').contains(event.target)) {
-        console.log('Clicked outside work modal:', event.target); // Log to see what element was clicked outside modal
-        closeWorkModal();
-    }
+ if (currentWorkModal && !currentWorkModal.querySelector('.work_modal-content').contains(event.target)) {
+     console.log('Clicked outside work modal:', event.target); // Log to see what element was clicked outside modal
+     closeWorkModal();
+ }
 });
 
 // Update modal position on scroll
 window.addEventListener('scroll', () => {
-    if (currentWorkModal) {
-        centerModal(currentWorkModal);
-    }
+ if (currentWorkModal) {
+     centerModal(currentWorkModal);
+ }
 });
+
+function centerModal(modal) {
+ // Function to center the modal on the screen
+ const modalContent = modal.querySelector('.work_modal-content');
+ const rect = modalContent.getBoundingClientRect();
+ modalContent.style.top = `calc(50% - ${rect.height / 2}px)`;
+ modalContent.style.left = `calc(50% - ${rect.width / 2}px)`;
+};
+
+/*=============== INVERT CURSOR AND FOLLOWER ===============*/
+document.addEventListener('DOMContentLoaded', function() {
+    const TweenMax = window.TweenMax;
+    const cursor = document.querySelector(".cursor"),
+        follower = document.querySelector(".follow");
+    let posX = 0,
+        posY = 0;
+    let mouseX = 0,
+        mouseY = 0;
+
+    // Function to add the increase-size class
+    function increaseSize() {
+        follower.classList.add('increase-size');
+    }
+
+    // Function to remove the increase-size class
+    function resetSize() {
+        follower.classList.remove('increase-size');
+    }
+
+    TweenMax.to({}, 0.016, {
+        repeat: -1,
+        onRepeat: function () {
+            posX += (mouseX - posX) / 9;
+            posY += (mouseY - posY) / 9;
+
+            TweenMax.set(follower, {
+                css: {
+                    left: posX - 37,
+                    top: posY - 37
+                }
+            });
+            TweenMax.set(cursor, {
+                css: {
+                    left: mouseX,
+                    top: mouseY
+                }
+            });
+        }
+    });
+
+    document.onmousemove = function (e) {
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+        document.body.style.setProperty("--x", e.clientX + "px");
+        document.body.style.setProperty("--y", e.clientY + "px");
+    };
+
+    // Add event listeners to elements triggering the increase in size
+    const elementsToHover = document.querySelectorAll('.increase-size-on-hover');
+
+    elementsToHover.forEach(element => {
+        element.addEventListener('mouseenter', increaseSize);
+        element.addEventListener('mouseleave', resetSize);
+    });
+});
+
+
+// OPTIONALASSS
+
+// let title = document.querySelector('.title');
+// let curs = document.querySelector('.cursor');
+
+// document.addEventListener('mousemove', (e) => {
+//   let x = e.pageX;
+//   let y = e.pageY;
+//   curs.style.left = (x - 22) + "px";
+//   curs.style.top = (y - 22) + "px";
+// });
+
+// document.addEventListener('mouseleave', (e) => {
+//   let x = e.pageX;
+//   let y = e.pageY;
+//   curs.style.left = (x - 22) + "px";
+//   curs.style.top = (y - 22) + "px";
+// });

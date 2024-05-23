@@ -1,8 +1,8 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
-test{
-    color:hsl(336, 34%, 42%)
+test {
+    color: hsl(336, 34%, 42%);
 }
 
 /*=============== VARIABLES CSS ===============*/
@@ -18,17 +18,22 @@ test{
         Teal: hsl(174, 63%, 62%)
         color: hsl(336, 53%, 58%)
   */
-    --first-hue: 336;
-    --sat: 66%;
-    --lig: 75%;
-    --second-hue: 219;
+    --first-hue: 0;
+    --sat: 0%;
+    --lig: 0%;
+    --second-hue: 28;
+
+    --text-color-container: rgb(224, 224, 224);
+    --icon-color-container: rgb(0, 174, 255);
     --first-color: hsl(var(--first-hue), var(--sat), var(--lig));
     --first-color-alt: hsl(var(--first-hue), var(--sat), 71%); /* -4% */
-    --title-color: hsl(var(--second-hue), 15%, 95%);
+    --title-color: hsl(var(--second-hue), 15%, 5%);
     --text-color: hsl(var(--second-hue), 8%, 75%);
     --text-color-light: hsl(var(--second-hue), 4%, 55%);
-    --body-color: hsl(var(--second-hue), 48%, 8%);
-    --container-color: hsl(var(--second-hue), 32%, 12%);
+    // --body-color: hsl(var(--second-hue), 48%, 8%);
+    --body-color: black;
+    --container-color: hsl(var(--second-hue), 0%, 5%);
+    // --container-color: hsl(0, 0%, 0%);;
 
     /*========== Bubble Variables ==========*/
     // originals
@@ -49,39 +54,38 @@ test{
     // --color5: rgb(145,71,100);
     // --color-interactive: rgb(248, 238, 153);
 
-    --color-bg1: rgb(108, 0, 162);
+    --color-bg1: rgb(10, 7, 1);
     --color-bg2: rgb(0, 17, 82);
     --color1: 180, 180, 50;
     --color2: 208, 86, 86;
-    --color3: 243,187,115;
+    --color3: 243, 187, 115;
     --color4: 221, 74, 255;
-    --color5: 243,187,115;
-    --color-interactive: 248, 238, 153;
+    --color5: 243, 187, 115;
+    --color-interactive: 0, 0, 0;
     --circle-size: 50%;
     --blending: hard-light;
 
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
     --body-font: "Poppins", sans-serif;
-    --biggest-font-size: 1.75rem;
-    --h1-font-size: 1.5rem;
-    --h2-font-size: 1.25rem;
-    --h3-font-size: 1rem;
-    --normal-font-size: 0.938rem;
-    --small-font-size: 0.813rem;
-    --smaller-font-size: 0.75rem;
+    --biggest-font-size: 2.75rem;
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 2.25rem;
+    --h3-font-size: 1.8rem;
+    --normal-font-size: 1.938rem;
+    --small-font-size: 1.25rem;
+    --smaller-font-size: 1rem;
     --tiny-font-size: 0.625rem;
 
     /*========== Font weight ==========*/
-    --font-medium: 500;
-    --font-semibold: 600;
+    --font-medium: 1000;
+    --font-semibold: 1000;
 
     /*========== z index ==========*/
     --z-tooltip: 10;
     --z-fixed: 100;
     --z-modal: 1000;
 }
-
 
 /* Responsive typography */
 @media screen and (min-width: 968px) {
@@ -104,6 +108,7 @@ test{
 }
 
 html {
+    // temp: hsl(0, 0%, 0%);
     scroll-behavior: smooth;
 }
 
@@ -113,12 +118,13 @@ input,
 textarea {
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
+    font-weight: 900;
 }
 
 body {
     //   background-color: var(--body-color);
     color: var(--text-color);
-    background: linear-gradient(40deg, var(--color-bg1), rgb(100, 220, 255), rgb(140, 100, 255), var(--color-bg2),);
+    background: linear-gradient(40deg, var(--color-bg1), rgb(100, 220, 255), rgb(140, 100, 255), var(--color-bg2));
 }
 
 h1,
@@ -201,7 +207,7 @@ img {
 .section__subtitle {
     display: block;
     font-size: var(--smaller-font-size);
-    color: var(--text-color-light);
+    color: black;
 }
 
 /*=============== Background Bubble ===============*/
@@ -211,21 +217,21 @@ img {
     overflow: hidden;
     top: 0;
     left: 0;
-    filter:hue-rotate(25deg);
+    filter: hue-rotate(25deg);
     // background-size: 200%, 200%;
     // animation: color 30s ease-in-out infinite;
 
     // animation: showup 5s;
 }
 
-@keyframes color{
-    0%{
+@keyframes color {
+    0% {
         background-position: 0% 50%;
     }
-    50%{
+    50% {
         background-position: 100% 50%;
     }
-    100%{
+    100% {
         background-position: 0% 50%;
     }
 }
@@ -447,7 +453,7 @@ svg {
     }
 }
 
-@keyframes moveInDiagonal{
+@keyframes moveInDiagonal {
     0% {
         transform: translateY(-50%);
         transform: translateX(-50%);
@@ -477,13 +483,14 @@ svg {
 /*=============== HEADER & NAV===============*/
 .header {
     position: fixed;
-    top: 0;
+    top: -15px;
     left: 0;
     width: 100%;
-    background-color: var(--body-color);
+    // background-color: var(--body-color);
+    // height: max-content;
     z-index: var(--z-fixed);
     animation: header-reveal 1.5s ease-in-out;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 @keyframes header-reveal {
@@ -495,9 +502,8 @@ svg {
     }
 }
 
-.header-reveal{
-    top:0;
-
+.header-reveal {
+    top: 0;
 }
 
 .nav {
@@ -508,20 +514,20 @@ svg {
 }
 
 .nav_logo {
-    color: var(--first-color);
+    color: var(--text-color-container);
     font-weight: var(--font-medium);
     transition: 0.4s;
 }
 
 .nav_logo:hover {
-    color: var(--first-color-alt);
+    color: var(--text-color-container);
     font-size: xx-large;
 }
 
 .nav_menu {
     position: fixed;
     bottom: 1rem;
-    background-color: hsl(var(--second-hue), 32%, 16%, 0.8);
+    background-color: hsl(var(--second-hue), 0%, 20%, 0.8);
     width: 90%;
     border-radius: 4rem;
     padding: 1rem 2.25rem;
@@ -536,12 +542,14 @@ svg {
 
 .nav_link {
     position: relative; /* Needed for the pseudo-element to be positioned correctly */
-    color: var(--text-color);
+    color: var(--text-color-container);
     font-size: 1.25rem;
     padding: 0.4rem;
     display: flex;
     border-radius: 5rem;
-    transition: color 0.4s, box-shadow 0.4s;
+    transition:
+        color 0.4s,
+        box-shadow 0.4s;
 }
 
 .nav_link::before {
@@ -570,8 +578,8 @@ svg {
 /* Change background header */
 .scroll-header {
     box-shadow: 0 4px 4px hsl(0, 0%, 4%, 0.3);
-    // transition: 1s;
-
+    background-color: var(--body-color);
+    top: 0;
 }
 
 /*=============== HOME ===============*/
@@ -626,6 +634,7 @@ svg {
 }
 
 .home_buttons {
+    color: var(--text-color-container);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -647,7 +656,7 @@ svg {
 .home_social-link {
     width: max-content;
     background-color: var(--container-color);
-    color: var(--first-color);
+    color: var(--text-color-container);
     padding: 0.25rem;
     border-radius: 0.25rem;
     display: flex;
@@ -656,8 +665,8 @@ svg {
 }
 
 .home_social-link:hover {
-    background-color: var(--first-color);
-    color: #fff;
+    background-color: rgba(var(--color4), 0);
+    color: var(--first-color);
     font-size: 2.7rem;
 }
 
@@ -691,11 +700,12 @@ svg {
 .button {
     display: inline-block;
     background-color: var(--first-color);
-    color: var(--body-color);
+    color: var(--text-color-container);
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     font-weight: var(--font-medium);
-    transition: .4s;
+    transition: 0.4s;
+    font-family: exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
 }
 
 .button:hover {
@@ -718,7 +728,6 @@ svg {
     width: 220px;
     border-radius: 1.5rem;
     justify-self: center;
-    
 }
 
 .about_data {
@@ -742,12 +751,13 @@ svg {
 
 .about_icon {
     font-size: 1.5rem;
-    color: var(--first-color);
+    color: var(--icon-color-container);
     margin-bottom: 0.5rem;
 }
 
 .about_title {
     font-size: var(--small-font-size);
+    color: var(--text-color-container);
 }
 
 .about-subtitle {
@@ -756,6 +766,8 @@ svg {
 
 .about_description {
     margin-bottom: 2rem;
+    color: black;
+    font-size: 1.1rem;
 }
 
 /*=============== SKILLS ===============*/
@@ -764,6 +776,7 @@ svg {
     row-gap: 2rem;
     padding-top: 1rem;
 }
+
 
 .skills_content {
     background-color: var(--container-color);
@@ -774,15 +787,15 @@ svg {
 .skills_title {
     font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
-    color: var(--first-color);
+    color: var(--text-color-container);
     text-align: center;
     margin-bottom: 1.5rem;
 }
 
 .skills_box {
-    display: flex;
-    justify-content: center;
-    column-gap: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-gap: 1.25rem; /* Adjust gap between items  Set a fixed height to trigger wrapping */
 }
 
 .skills_group {
@@ -792,19 +805,23 @@ svg {
 }
 
 .skills_data {
+    width: calc(50% - 1.25rem); /* Adjust width for three columns */
+    margin-bottom: 1rem;
     display: flex;
-    column-gap: 1.5rem;
+    column-gap: 1rem;
+    text-align: left;
 }
 
 .skills .bx-badge-check {
-    font-size: 1rem;
-    color: var(--first-color);
+    font-size: 2rem;
+    color: var(--icon-color-container);
 }
 
 .skills_name {
-    font-size: var(--normal-font-size);
+    font-size: var(--small-font-size);
     font-weight: var(--font-medium);
     line-height: 18px;
+    color: var(--text-color-container);
 }
 
 .skills_level {
@@ -826,10 +843,11 @@ svg {
 .services_title {
     font-size: var(--h3-font-size);
     margin-bottom: 2rem;
+    color: var(--text-color-container);
 }
 
 .services_button {
-    color: var(--first-color);
+    color: var(--text-color);
     font-size: var(--small-font-size);
     display: flex;
     align-items: center;
@@ -857,14 +875,15 @@ svg {
     padding: 2rem 1rem;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 0.4s, opacity 0.4s;
+    transition:
+        visibility 0s 0.4s,
+        opacity 0.4s;
     z-index: 9999;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 .services_modal-content {
     position: relative;
@@ -910,7 +929,6 @@ svg {
     transition: opacity 0.4s;
 }
 
-
 /*=============== WORK ===============*/
 .work_container {
     padding-top: 1rem;
@@ -947,11 +965,12 @@ svg {
     font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
     margin-bottom: 0.25rem;
+    color: var(--text-color-container);
 }
 
 .work_button {
     width: max-content;
-    color: var(--first-color);
+    color: var(--text-color-container);
     font-size: var(--small-font-size);
     display: flex;
     align-items: center;
@@ -970,7 +989,7 @@ svg {
 /* Active item work*/
 .active-work {
     background-color: var(--first-color);
-    color: var(--body-color);
+    color: var(--text-color-container);
 }
 
 /* Work modal */
@@ -984,7 +1003,9 @@ svg {
     padding: 2rem 1rem;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 0.4s, opacity 0.4s;
+    transition:
+        visibility 0s 0.4s,
+        opacity 0.4s;
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -1035,11 +1056,6 @@ svg {
     transition: opacity 0.4s;
 }
 
-
-/*=============== TESTIMONIAL ===============*/
-
-/* Swiper class */
-
 /*=============== CONTACT ===============*/
 .contact_container {
     row-gap: 3rem;
@@ -1065,8 +1081,8 @@ svg {
 }
 
 .contact_card-icon {
-    font-size: 2rem;
-    color: var(--title-color);
+    font-size: 3rem;
+    color: var(--icon-color-container);
     margin-bottom: 0.25rem;
 }
 
@@ -1080,8 +1096,12 @@ svg {
     margin-bottom: 0.75rem;
 }
 
+.contact_card-title {
+    color: var(--text-color-container);
+}
+
 .contact_button {
-    color: var(--first-color);
+    color: var(--text-color-container);
     font-size: var(--small-font-size);
     display: flex;
     align-items: center;
@@ -1117,13 +1137,16 @@ svg {
     padding: 1.5rem;
     border-radius: 0.75rem;
     z-index: 1;
+    font-size: var(--small-font-size);
+    font-family: exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
+    color: black;
 }
 
 .contact_form-tag {
     position: absolute;
-    top: -0.75rem;
+    top: -1.2rem;
     left: 1.25rem;
-    font-size: var(--small-font-size);
+    font-size: 1rem;
     padding: 0.25rem;
     background-color: var(--body-color);
     z-index: 10;
@@ -1138,7 +1161,8 @@ svg {
 }
 /*=============== FOOTER ===============*/
 .footer {
-    background-color: var(--first-color);
+    background: none;
+    border-top: 5px double var(--first-color);
 }
 
 .footer_container {
@@ -1169,7 +1193,7 @@ svg {
 }
 .footer_social-link {
     background-color: var(--body-color);
-    color: var(--first-color);
+    color: white;
     padding: 0.25rem;
     border-radius: 0.25rem;
     font-size: 1rem;
@@ -1198,58 +1222,170 @@ $bg-height: 50px;
 
 /* Animations */
 @-webkit-keyframes bg-scrolling-reverse {
-  100% { background-position: $bg-width $bg-height; }
+    100% {
+        background-position: $bg-width $bg-height;
+    }
 }
-@-moz-keyframes    bg-scrolling-reverse {
-  100% { background-position: $bg-width $bg-height; }
+@-moz-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: $bg-width $bg-height;
+    }
 }
-@-o-keyframes      bg-scrolling-reverse {
-  100% { background-position: $bg-width $bg-height; }
+@-o-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: $bg-width $bg-height;
+    }
 }
-@keyframes         bg-scrolling-reverse {
-  100% { background-position: $bg-width $bg-height; }
+@keyframes bg-scrolling-reverse {
+    100% {
+        background-position: $bg-width $bg-height;
+    }
 }
 
 @-webkit-keyframes bg-scrolling {
-  0% { background-position: $bg-width $bg-height; }
+    0% {
+        background-position: $bg-width $bg-height;
+    }
 }
-@-moz-keyframes    bg-scrolling {
-  0% { background-position: $bg-width $bg-height; }
+@-moz-keyframes bg-scrolling {
+    0% {
+        background-position: $bg-width $bg-height;
+    }
 }
-@-o-keyframes      bg-scrolling {
-  0% { background-position: $bg-width $bg-height; }
+@-o-keyframes bg-scrolling {
+    0% {
+        background-position: $bg-width $bg-height;
+    }
 }
-@keyframes         bg-scrolling {
-  0% { background-position: $bg-width $bg-height; }
+@keyframes bg-scrolling {
+    0% {
+        background-position: $bg-width $bg-height;
+    }
 }
 
-// /* Main styles */
-// body {
-  
-//   color: #ac3636;
-//   font: 400 16px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
-//   text-align: center;
-//   /* img size is 50x50 */
-//   background: url($bg-url) repeat 0 0;
-  
-//   -webkit-animation: bg-scrolling-reverse .92s infinite; /* Safari 4+ */
-//   -moz-animation:    bg-scrolling-reverse .92s infinite; /* Fx 5+ */
-//   -o-animation:      bg-scrolling-reverse .92s infinite; /* Opera 12+ */
-//   animation:         bg-scrolling-reverse .92s infinite; /* IE 10+ */
-//   -webkit-animation-timing-function: linear;
-//   -moz-animation-timing-function:    linear;
-//   -o-animation-timing-function:      linear;
-//   animation-timing-function:         linear;
-  
-//   &::before {
-//     font-size: 8rem;
-//     font-weight: 100;
-//     font-style: normal;
+/* Main styles */
+body {
+    font:
+        600 16px/1.5 exo,
+        ubuntu,
+        "segoe ui",
+        helvetica,
+        arial,
+        sans-serif;
+    text-align: center;
+    /* img size is 50x50 */
+    background: url($bg-url) repeat 0 0;
+
+    -webkit-animation: bg-scrolling-reverse 0.92s infinite; /* Safari 4+ */
+    -moz-animation: bg-scrolling-reverse 0.92s infinite; /* Fx 5+ */
+    -o-animation: bg-scrolling-reverse 0.92s infinite; /* Opera 12+ */
+    animation: bg-scrolling-reverse 0.92s infinite; /* IE 10+ */
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+
+    &::before {
+        font-size: 8rem;
+        font-weight: 100;
+        font-style: normal;
+    }
+}
+
+//******************************************************
+// Like it if you like it :) Thank you
+// Best viewed fullscreen
+// https://codepen.io/nocni_sovac/full/eYJQEbd
+//******************************************************
+
+// @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
+
+// .imgBack {
+//   position:absolute;
+//   width: 700px;
+// }
+
+//   .cursor {
+//     width:40px;
+//     height:40px;
+//     border:3px solid white;
+//     border-radius:50%;
+//     position: absolute;
+//     box-shadow: 2px -3px 41px -1px rgba(250,250,250,0.64);
+//     transition: all .1s linear;
+//     pointer-events: none;
+//   }
+
+// .title {
+//   position: relative;
+//   display: block;
+//   -webkit-text-stroke: 2px #ffffff;
+//   text-stroke: 2px #ffffff;
+//   transition: all .4s linear;
+//   user-select: none;
+
+//   &:hover {
+//     opacity: 1;
+//     -webkit-text-fill-color: white;
+//     text-fill-color: white;
+
+//      ~ .cursor {
+//         transform: scale(1.4);
+//         mix-blend-mode: difference;
+//         background: white;
+//       }
 //   }
 // }
 
+.cursor {
+    position: absolute;
+    background-color: #000;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    transition:
+        0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) transform,
+        0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity;
+    user-select: none;
+    pointer-events: none;
+    z-index: 10000;
+    transform: scale(1);
+    transform: translate(-3px, -3px);
+    transform-origin: center;
+    overflow: hidden;
+}
+body:active .cursor {
+    transform: scale(2) translate(-2px, -2px);
+}
 
+.follow {
+    position: absolute;
+    background-color: #ffffff00;
+    width: 2em;
+    height: 2em;
+    border: 3px #fff solid;
+    border-radius: 100%;
+    z-index: 1;
+    transition:
+        0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+        0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity;
+    
+    user-select: none;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-15px, -15px);
+    
+    margin-top: 2.25rem;
+    margin-left: 2.25rem;
 
+    mix-blend-mode: difference;
+}
+
+.increase-size {
+    transform: scale(4);
+    
+    border-width: 20px; /* Increase size */
+}
 
 /*=============== SCROLL BAR ===============*/
 ::-webkit-scrollbar {
@@ -1404,13 +1540,13 @@ $bg-height: 50px;
     .nav {
         height: calc(var(--header-height) + 1rem);
     }
-    .nav_menu{
+    .nav_menu {
         width: max-content;
     }
-    .nav_list{
+    .nav_list {
         gap: 2rem;
     }
-    .nav_link{
+    .nav_link {
         font-size: 2rem;
     }
 
@@ -1476,7 +1612,7 @@ $bg-height: 50px;
     }
     .skills .bx-badge-check {
         font-size: 1.5rem;
-        color: var(--first-color);
+        color: var(--icon-color-container);
     }
 
     .services_container {
@@ -1516,7 +1652,7 @@ $bg-height: 50px;
         padding: 0.4rem;
         border-radius: 0.5rem;
     }
-    .footer_copy{
+    .footer_copy {
         font-size: 1.3rem;
         margin-top: 1.5rem;
         margin-bottom: 1rem;
