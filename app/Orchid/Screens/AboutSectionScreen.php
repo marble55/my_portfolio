@@ -93,10 +93,9 @@ class AboutSectionScreen extends Screen
         $about = About::first();
         
         $about->fill($request->input('about'));
-        dd($about);
         $about->save();
 
-        Alert::info("Hero section updated successfully.");
+        Alert::info("About details updated successfully.");
 
         redirect(route('platform.about'));
     }

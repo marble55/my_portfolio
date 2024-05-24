@@ -74,8 +74,12 @@ class AboutListScreen extends Screen
                     })->popover("Click on the title to edit"),
 
                 //Description col
-                TD::make('description', "Description")->render(function (AboutList $aboutList) {
+                TD::make('aboutList.description', "Description")->render(function (AboutList $aboutList) {
                     return $aboutList->description;
+                }),
+
+                TD::make("aboutList.icon","Icon")->render(function (AboutList $aboutList){
+                    return $aboutList->icon;
                 }),
 
                 //Delete Button
@@ -86,8 +90,8 @@ class AboutListScreen extends Screen
 
             //Modal
             Layout::modal('createUpdateModal', [
+                
                 Layout::rows([
-
                     Select::make('aboutList.category')
                         ->options([
                             $this->category  => $this->category,
@@ -97,11 +101,15 @@ class AboutListScreen extends Screen
                         ->title('Title')
                         ->placeholder('Write title')
                         ->required(),
+
                     Input::make('aboutList.description')
                         ->title('Description')
                         ->placeholder('Insert attractive text')
                         ->help('Specify short yet descriptive text')
                         ->required(),
+
+                    Input::make('aboutList.icon')
+                        ->title('Icon')
                 ])
             ])->title('Create/Update')->applyButton('Apply'),
         ];
@@ -147,9 +155,11 @@ class AboutListScreen extends Screen
         // $request->validate([
         //     'task.name' => 'required|max:225'
         // ]);
+
         $aboutList->update([
             'title' => $request->input('aboutList.title'),
-            'description' => $request->input('aboutList.description')
+            'description' => $request->input('aboutList.description'),
+            'icon' => $request->input('aboutList.icon'),
         ]);
     }
 }

@@ -11,6 +11,6 @@ class AboutList extends Model
     use HasFactory, AsSource;
 
     protected $fillable =[
-        'category', 'title', 'description'
+        'category', 'title', 'description', 'icon'
     ];
 }

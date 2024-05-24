@@ -146,7 +146,8 @@
                     </h3>
 
                     <div class="home_buttons">
-                        <a download href="assets/pdf/Ansel-Cv.pdf" class="button button--ghost increase-size-on-hover">
+                        <a download="ZellerJim_CV" href="{{ $cv_document ?? '#' }}"
+                            class="button button--ghost increase-size-on-hover">
                             Download CV
                         </a>
                         <a href="#about" class="button ">About Me</a>
@@ -154,19 +155,21 @@
                 </div>
 
                 <div class="home_handle">
-                    <img src="{{ URL::asset('assets/img/perfil.png') }}" alt class="home_img">
+                    <img src="{{ $heroSections->image_path ?? URL::asset('assets/img/perfil.png') }}" alt
+                        class="home_img">
                 </div>
 
                 <div class="home_social">
-                    <a href class="home_social-link">
+                    @if ($socialLinks)
+                        @foreach ($socialLinks as $socialLink)
+                            <a href="{{ $socialLink->link }}" class="home_social-link">
+                                <i class='{{ $socialLink->icon_path }}'></i>
+                            </a>
+                        @endforeach
+                    @endif
+                    {{-- <a href class="home_social-link">
                         <i class='bx bxl-facebook-circle'></i>
-                    </a>
-                    <a href class="home_social-link">
-                        <i class='bx bxl-facebook-circle'></i>
-                    </a>
-                    <a href class="home_social-link">
-                        <i class='bx bxl-facebook-circle'></i>
-                    </a>
+                    </a> --}}
                 </div>
 
                 <a href="#about" class="home_scroll">
@@ -188,21 +191,21 @@
                     <div class="about_info">
 
                         <div class="about_box">
-                            <i class='bx bx-award about_icon'></i>
-                            <h3 class="about_title">Experience</h3>
-                            <span class="about_subtitle">8 Years Working</span>
+                            <i class='{{ $aboutFact1->icon ?? 'bx bx-award about_icon' }}'></i>
+                            <h3 class="about_title">{{ $aboutFact1->title ?? 'Experience' }}</h3>
+                            <span class="about_subtitle">{{ $aboutFact1->description ?? '8 Years Working' }}</span>
                         </div>
 
                         <div class="about_box">
-                            <i class='bx bx-briefcase-alt-2 about_icon'></i>
-                            <h3 class="about_title">Completed</h3>
-                            <span class="about_subtitle">48+ Projects</span>
+                            <i class='{{ $aboutFact1->icon ?? 'bx bx-briefcase-alt-2 about_icon' }}'></i>
+                            <h3 class="about_title">{{ $aboutFact1->title ?? 'Completed' }}</h3>
+                            <span class="about_subtitle">{{ $aboutFact1->description ?? '48+ Projects' }}</span>
                         </div>
 
                         <div class="about_box">
-                            <i class='bx bx-support about_icon'></i>
-                            <h3 class="about_title">Support</h3>
-                            <span class="about_subtitle">Online 24/7</span>
+                            <i class='{{ $aboutFact1->icon ?? 'bx bx-support about_icon' }}'></i>
+                            <h3 class="about_title">{{ $aboutFact1->title ?? 'Support' }}</h3>
+                            <span class="about_subtitle">{{ $aboutFact1->description ?? 'Online 24/7' }}</span>
                         </div>
 
                     </div>
@@ -210,11 +213,11 @@
                     <p class="about_description">
                         {{ $abouts->description ??
                             '
-                                                                                                                                                                                                                                                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                                                                                                                                                                                                                                        Veniam libero consequuntur nobis laboriosam temporibus
-                                                                                                                                                                                                                                                                                        laborum eaque, praesentium rem nostrum deserunt
-                                                                                                                                                                                                                                                                                        inventore sunt! Recusandae veritatis a, aperiam aut
-                                                                                                                                                                                                                                                                                        ipsam officiis vero?' }}
+                                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                        Veniam libero consequuntur nobis laboriosam temporibus
+                                                                        laborum eaque, praesentium rem nostrum deserunt
+                                                                        inventore sunt! Recusandae veritatis a, aperiam aut
+                                                                        ipsam officiis vero?' }}
                     </p>
                     <a href="#contact" class="button">Contact Me</a>
                 </div>
@@ -232,171 +235,60 @@
             <div class="skills_container container swiper">
                 <div class="swiper-wrapper">
                     <div class="skills_content swiper-slide">
-                        <h3 class="skills_title">Frontend developer</h3>
+                        <h3 class="skills_title">Skills</h3>
 
                         <div class="skills_box">
-                            {{-- <div class="skills_group">
-                                </div> --}}
-                            <div class="skills_data">
-                                <i class='bx bx-badge-check'></i>
+                            @if ($skillLists)
+                                @foreach ($skillLists as $skill)
+                                    <div class="skills_data">
+                                        <i class='{{ $skill->icon ?? 'bx bx-badge-check' }}'></i>
 
-                                <div>
-                                    <h3 class="skills_name">HTML</h3>
-                                    <span class="skills_level">Basic</span>
-                                </div>
-                            </div>
-
-                            <div class="skills_data">
-                                <i class='bx bx-badge-check '></i>
-
-                                <div>
-                                    <h3 class="skills_name">CSS</h3>
-                                    <span class="skills_level">Advanced</span>
-                                </div>
-                            </div>
-
-                            <div class="skills_data">
-                                <i class='bx bx-badge-check '></i>
-                                <div>
-                                    <h3 class="skills_name">Javascript</h3>
-                                    <span class="skills_level">Intermediate</span>
-                                </div>
-                            </div>
-
-                            <div class="skills_data">
-                                <i class='bx bx-badge-check '></i>
-
-                                <div>
-                                    <h3 class="skills_name">Bootstap</h3>
-                                    <span class="skills_level">Intermediate</span>
-                                </div>
-                            </div>
-
-                            <div class="skills_data">
-                                <i class='bx bx-badge-check '></i>
-
-                                <div>
-                                    <h3 class="skills_name">Git</h3>
-                                    <span class="skills_level">Beginner</span>
-                                </div>
-                            </div>
-                            {{-- 
-                                <div class="skills_group">
-                                </div> --}}
+                                        <div>
+                                            <h3 class="skills_name">{{ $skill->title ?? 'HTML' }}</h3>
+                                            <span class="skills_level">{{ $skill->description ?? 'Basic' }}</span>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
 
                     <div class="skills_content swiper-slide">
-                        <h3 class="skills_title">Backend developer</h3>
+                        <h3 class="skills_title">Experience</h3>
 
                         <div class="skills_box">
-                            <div class="skills_group">
+                            @if ($experienceLists)
+                                @foreach ($experienceLists as $experience)
+                                    <div class="skills_data">
+                                        <i class='{{ $experience->icon ?? 'bx bx-badge-check' }}'></i>
 
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">PHP</h3>
-                                        <span class="skills_level">Basic</span>
+                                        <div>
+                                            <h3 class="skills_name">{{ $experience->title ?? 'HTML' }}</h3>
+                                            <span
+                                                class="skills_level">{{ $experience->description ?? 'Basic' }}</span>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">Laravel</h3>
-                                        <span class="skills_level">Advanced</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">Javascript</h3>
-                                        <span class="skills_level">Intermediate</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="skills_group">
-
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">Bootstap</h3>
-                                        <span class="skills_level">Intermediate</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">Git</h3>
-                                        <span class="skills_level">Beginner</span>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
 
                     <div class="skills_content swiper-slide">
-                        <h3 class="skills_title">Backend developer</h3>
+                        <h3 class="skills_title">Education</h3>
 
                         <div class="skills_box">
-                            <div class="skills_group">
+                            @if ($educationLists)
+                                @foreach ($educationLists as $education)
+                                    <div class="skills_data">
+                                        <i class='{{ $education->icon ?? 'bx bx-badge-check' }}'></i>
 
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">PHP</h3>
-                                        <span class="skills_level">Basic</span>
+                                        <div>
+                                            <h3 class="skills_name">{{ $education->title ?? 'HTML' }}</h3>
+                                            <span class="skills_level">{{ $education->description ?? 'Basic' }}</span>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">Laravel</h3>
-                                        <span class="skills_level">Advanced</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">Javascript</h3>
-                                        <span class="skills_level">Intermediate</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="skills_group">
-
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">Bootstap</h3>
-                                        <span class="skills_level">Intermediate</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills_data">
-                                    <i class='bx bx-badge-check '></i>
-
-                                    <div>
-                                        <h3 class="skills_name">Git</h3>
-                                        <span class="skills_level">Beginner</span>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -414,7 +306,7 @@
 
                 @foreach ($services as $service)
                     <div class="services_card">
-                        <h3 class="services_title">{{ 'Product <br> Designer' }}</h3>
+                        <h3 class="services_title">{{ $service->title ?? 'Product Designer' }}</h3>
 
                         <span class="services_button">
                             See more <i class='bx bx-right-arrow-alt services_icon'></i>
@@ -426,87 +318,12 @@
 
                                 <h3 class="services_modal-title">{{ $service->title ?? 'Product Designer' }}</h3>
                                 <p class="services_modal-description">
-                                    {{ $service->description }}
+                                    {{ $service->description ?? 'empty' }}
                                 </p>
-
-                                {{-- <ul class="services_modal-list">
-                                        <li class="services_modal-item">
-                                            <i class='bx bxs-check-square services_modal-icon'></i>
-
-                                            <p class="services_modal-item">
-                                                I develop the user interface.
-                                            </p>
-                                        </li>
-
-                                        <li class="services_modal-item">
-                                            <i class='bx bxs-check-square services_modal-icon'></i>
-
-                                            <p class="services_modal-item">
-                                                Web page development.
-                                            </p>
-                                        </li>
-
-                                        <li class="services_modal-item">
-                                            <i class='bx bxs-check-square services_modal-icon'></i>
-
-                                            <p class="services_modal-item">
-                                                I create ux element interactions.
-                                            </p>
-                                        </li>
-                                    </ul> --}}
                             </div>
                         </div>
                     </div>
                 @endforeach
-
-                <div class="services_card">
-                    <h3 class="services_title">Product <br> Designer</h3>
-
-                    <span class="services_button">
-                        See more <i class='bx bx-right-arrow-alt services_icon'></i>
-                    </span>
-
-                    <div class="services_modal">
-                        <div class="services_modal-content">
-                            <i class='bx bx-x services_modal-close'></i>
-
-                            <h3 class="services_modal-title">Product
-                                Designer</h3>
-                            <p class="services_modal-description">
-                                Service with more than 3 years of
-                                experience.
-                                Providing quality work to clients and
-                                companies.
-                            </p>
-
-                            <ul class="services_modal-list">
-                                <li class="services_modal-item">
-                                    <i class='bx bxs-check-square services_modal-icon'></i>
-
-                                    <p class="services_modal-item">
-                                        I develop the user interface.
-                                    </p>
-                                </li>
-
-                                <li class="services_modal-item">
-                                    <i class='bx bxs-check-square services_modal-icon'></i>
-
-                                    <p class="services_modal-item">
-                                        Web page development.
-                                    </p>
-                                </li>
-
-                                <li class="services_modal-item">
-                                    <i class='bx bxs-check-square services_modal-icon'></i>
-
-                                    <p class="services_modal-item">
-                                        I create ux element interactions.
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
                 {{-- <div class="services_card">
                         <h3 class="services_title">Visual <br> Designer</h3>
@@ -622,28 +439,27 @@
 
             <div class="work_container container grid">
 
-                <div class="work_card web">
-                    <img src="assets/img/work1.jpg" alt class="work_img">
-                    <h3 class="work_title">Web design</h3>
-                    <span class="work_button">
-                        Read More <i class='bx bx-right-arrow-alt services_icon'></i>
-                    </span>
-                    <div class="work_modal">
-                        <div class="work_modal-content">
-                            <i class='bx bx-x work_modal-close'></i>
-                            <h3 class="work_modal-title">Web design</h3>
-                            <p class="work_modal-description">This is the description for the web design.</p>
+                @if ($portfolios)
+                    @foreach ($portfolios as $portfolio)
+                        <div class="work_card web">
+                            <img src="{{$portfolio->image_path ?? 'assets/img/work1.jpg' }}" alt class="work_img">
+                            <h3 class="work_title">{{ $portfolio->title ?? 'Web design' }}</h3>
+                            <span class="work_button">
+                                Read More <i class='bx bx-right-arrow-alt services_icon'></i>
+                            </span>
+                            <div class="work_modal">
+                                <div class="work_modal-content">
+                                    <i class='bx bx-x work_modal-close'></i>
+                                    <h3 class="work_modal-title">{{ $portfolio->title ?? 'Web design' }}</h3>
+                                    <p class="work_modal-description">{{ $portfolio->description ?? 'This is the description for the web design.' }}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
 
             </div>
         </section>
-
-        <!--=============== TESTIMONIALS ===============-->
-        <!-- <section class="testimonial section">
-
-            </section> -->
 
         <!--=============== CONTACT ===============-->
         <section class="contact section" id="contact">
@@ -657,30 +473,21 @@
                     <div class="contact_card">
                         <i class='bx bx-envelope contact_card-icon'></i>
                         <h3 class="contact_card-title">Email</h3>
-                        <span class="contact_card-data">user@gmail.com</span>
-
-                        <a href="" target="_blank" class="contact_button">
-                            Write me <i class='bx bx-mail-send contact_button-icon'></i>
-                        </a>
+                        <span class="contact_card-data">{{ $contacts->email ?? 'user@gmail.com' }}</span>
                     </div>
 
                     <div class="contact_card">
                         <i class='bx bxl-messenger contact_card-icon'></i>
-                        <h3 class="contact_card-title">Messenger</h3>
-                        <span class="contact_card-data">user.fb123</span>
-
-                        <a href="" target="_blank" class="contact_button">
-                            Write me <i class='bx bx-mail-send contact_button-icon'></i>
-                        </a>
+                        <h3 class="contact_card-title">Telephone</h3>
+                        <span class="contact_card-data">{{ $contact->phoneNumber ?? '+63 999 999 9999' }}</span>
                     </div>
 
                     <div class="contact_card">
-                        <i class='bx bx-envelope contact_card-icon'></i>
-                        <h3 class="contact_card-title">Email</h3>
-                        <span class="contact_card-data">user@gmail.com</span>
-
-                        <a href="" target="_blank" class="contact_button">
-                            Write me <i class='bx bx-mail-send contact_button-icon'></i>
+                        <i class='{{ $social_contact->icon_path ?? 'bx bx-envelope contact_card-icon' }}'></i>
+                        <h3 class="contact_card-title">{{ ucfirst($social_contact->platform) }}</h3>
+                        
+                        <a href="{{ $social_contact_link ?? '#' }}" target="_blank" class="contact_button">
+                            Message me <i class='bx bx-mail-send contact_button-icon'></i>
                         </a>
                     </div>
                 </div>
@@ -721,7 +528,7 @@
     <!--=============== FOOTER ===============-->
     <footer class="footer">
         <div class="footer_container container increase-size-on-hover">
-            <h1 class="footer_title">{{ $heroSections->name_title ?? 'Zeller Jim'}}</h1>
+            <h1 class="footer_title">{{ $heroSections->name_title ?? 'Zeller Jim' }}</h1>
 
             <ul class="footer_list">
                 <li>
@@ -736,18 +543,13 @@
             </ul>
 
             <ul class="footer_social">
-                <a href="#" target="_blank" class="footer_social-link">
-                    <i class='bx bxl-reddit'></i>
-                </a>
-                <a href="#" target="_blank" class="footer_social-link">
-                    <i class='bx bxl-facebook-circle'></i>
-                </a>
-                <a href="#" target="_blank" class="footer_social-link">
-                    <i class='bx bxl-reddit'></i>
-                </a>
-                <a href="#" target="_blank" class="footer_social-link">
-                    <i class='bx bxl-reddit'></i>
-                </a>
+                @if ($socialLinks)
+                    @foreach ($socialLinks as $socialLink)
+                        <a href="{{ $socialLink->link }}"  target="_blank" class="footer_social-link">
+                            <i class='{{ $socialLink->icon_path }}'></i>
+                        </a>
+                    @endforeach
+                @endif
             </ul>
 
             <span class="footer_copy"> Copyright@Jim</span>

@@ -273,10 +273,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.onmousemove = function (e) {
-        mouseX = e.pageX;
+        mouseX = Math.min(e.pageX, window.innerWidth); // Limit X position to viewport width
         mouseY = e.pageY;
-        document.body.style.setProperty("--x", e.clientX + "px");
-        document.body.style.setProperty("--y", e.clientY + "px");
+        document.body.style.setProperty("--x", mouseX + "px");
+        document.body.style.setProperty("--y", mouseY + "px");
     };
 
     // Add event listeners to elements triggering the increase in size

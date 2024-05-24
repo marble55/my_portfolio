@@ -21,7 +21,7 @@ class ContactLinksScreen extends Screen
     public function query(): iterable
     {
         return [
-            'contactLinks' => ContactLink::get(),
+            'contactLinks' => ContactLink::where('id', '>', 2)->get(),
         ];
     }
 

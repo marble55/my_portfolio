@@ -9,7 +9,6 @@ use App\Models\ContactLink;
 use App\Models\HeroSection;
 use App\Models\Portfolio;
 use App\Models\Service;
-use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
@@ -27,7 +26,17 @@ class IndexController extends Controller
         $services = Service::all();
         $portfolios = Portfolio::get();
         $contacts = Contact::first();
-        $contactLinks = ContactLink::get();
+        $social_contact = ContactLink::first();
+        $socialLinks = ContactLink::where('id', '>', 2)->get();
+
+        $aboutFact1 = AboutList::find(1);
+        $aboutFact2 = AboutList::find(2);
+        $aboutFact3 = AboutList::find(3);
+
+        $attachment = $heroSections->attachment()->first();
+
+        $cv_document = $attachment->url();
+
       
         return view('portfolio.index', compact(
             'heroSections', 
@@ -38,7 +47,12 @@ class IndexController extends Controller
             'services',
             'portfolios',
             'contacts',
-            'contactLinks',
+            'socialLinks',
+            'cv_document',
+            'social_contact',
+            'aboutFact1',
+            'aboutFact2',
+            'aboutFact3',
         ));
     }
 

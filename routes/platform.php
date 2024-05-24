@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\HeroSectionController;
+use App\Orchid\Screens\AboutFacts;
 use App\Orchid\Screens\AboutListEditScreen;
 use App\Orchid\Screens\AboutListScreen;
 use App\Orchid\Screens\AboutSectionScreen;
@@ -58,6 +59,13 @@ Route::screen('/about', AboutSectionScreen::class)->name('platform.about')
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.index')
         ->push(__('About'), route('platform.about')));;
+
+//About > {facts}
+Route::screen('about/facts/{category}', AboutFacts::class)->name('platform.about.facts')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.about')
+        ->push(__('Facts'), route('platform.about.facts', ['category' => 'fact'])));
+
 
 //About > {Skill}
 Route::screen('about/list1/{category}', AboutListScreen::class)->name('platform.about.skill')

@@ -126,7 +126,7 @@ return [
      */
 
     'resource' => [
-        'stylesheets' => [],
+        'stylesheets' => ['public\assets\css\platform.css'],
         'scripts'     => [],
     ],
 
@@ -142,7 +142,7 @@ return [
      |
      */
 
-    'vite' => [],
+    'vite' => [ ],
 
     /*
      |--------------------------------------------------------------------------

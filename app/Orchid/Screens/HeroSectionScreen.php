@@ -6,7 +6,9 @@ use App\Models\HeroSection;
 use App\Orchid\Layouts\HeroEditLayout;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\Attach;
 use Orchid\Screen\Fields\Cropper;
+use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
@@ -73,7 +75,13 @@ class HeroSectionScreen extends Screen
                 ->description('Update the Hero section details'),
             
             Layout::rows([
-                Cropper::make('picture'),
+                Cropper::make('hero.image_path'),
+
+                Upload::make('hero.attachment')
+                    ->title('CV File')
+                    ->maxFiles(1)
+                    ->maxFileSize('2')
+                    ->acceptedFiles('.pdf'),
             ]),
         ];
     }
@@ -81,14 +89,16 @@ class HeroSectionScreen extends Screen
     public function save(Request $request)
     {   
         // Retrieve the HeroSection model instance from the database
-        $heroSection = HeroSection::firstOrCreate([
-            'occupation' => 'Zeller jim', 
-            'name_title' => 'temp', 
-            'sub_title' => 'temp'
-            ]);
+        $heroSection = HeroSection::first();
+        
+
+        // dd($request);
+        $heroSection->attachment()->syncWithoutDetaching($request->input('hero.attachment', []));
         
         // Update the model instance with the new data from the request
         $heroSection->fill($request->input('hero'));
+        
+        $heroSection->fill($request->all());
         
         // Save the updated model instance back to the database
         $heroSection->save();

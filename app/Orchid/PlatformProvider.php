@@ -8,7 +8,6 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
-use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
@@ -41,64 +40,66 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('About')
                 ->route('platform.about')
                 ->list([
+                    Menu::make('Facts List')->route('platform.about.facts', ['category' => 'fact']),
+                ]),
+
+            Menu::make('Abilities')
+                ->list([
                     Menu::make('Skill List')->route('platform.about.skill', ['category' => 'Skill']),
                     Menu::make('Experience List')->route('platform.about.experience', ['category' => 'Experience']),
                     Menu::make('Education List')->route('platform.about.education', ['category' => 'Education']),
                 ]),
 
-            Menu::make('Services')->route('platform.services'),
+                Menu::make('Services')->route('platform.services'),
+                Menu::make('Portfolio')->route('platform.portfolio'),
+                Menu::make('Contact')->route('platform.contact')->list([
+                Menu::make('Links')->route('platform.contact.links'),
+                Menu::make('Messages')->route('platform.contact.messages'),
+            ]),
 
-            Menu::make('Portfolio')->route('platform.portfolio'),
+            Menu::make('Get Started')
+                ->icon('bs.book')
+                ->title('Navigation')
+                ->route(config('platform.index')),
 
-            Menu::make('Contact')->route('platform.contact')
-                ->list([
-                    Menu::make('Links')->route('platform.contact.links'),
-                    Menu::make('Messages')->route('platform.contact.messages'),
-                ]),
+            Menu::make('Sample Screen')
+                ->icon('bs.collection')
+                ->route('platform.example')
+                ->badge(fn () => 6),
 
-            // Menu::make('Get Started')
-            //     ->icon('bs.book')
-            //     ->title('Navigation')
-            //     ->route(config('platform.index')),
+            Menu::make('Form Elements')
+                ->icon('bs.card-list')
+                ->route('platform.example.fields')
+                ->active('*/examples/form/*'),
 
-            // Menu::make('Sample Screen')
-            //     ->icon('bs.collection')
-            //     ->route('platform.example')
-            //     ->badge(fn () => 6),
+            Menu::make('Overview Layouts')
+                ->icon('bs.window-sidebar')
+                ->route('platform.example.layouts'),
 
-            // Menu::make('Form Elements')
-            //     ->icon('bs.card-list')
-            //     ->route('platform.example.fields')
-            //     ->active('*/examples/form/*'),
+            Menu::make('Grid System')
+                ->icon('bs.columns-gap')
+                ->route('platform.example.grid'),
 
-            // Menu::make('Overview Layouts')
-            //     ->icon('bs.window-sidebar')
-            //     ->route('platform.example.layouts'),
+            Menu::make('Charts')
+                ->icon('bs.bar-chart')
+                ->route('platform.example.charts'),
 
-            // Menu::make('Grid System')
-            //     ->icon('bs.columns-gap')
-            //     ->route('platform.example.grid'),
+            Menu::make('Cards')
+                ->icon('bs.card-text')
+                ->route('platform.example.cards')
+                ->divider(),
 
-            // Menu::make('Charts')
-            //     ->icon('bs.bar-chart')
-            //     ->route('platform.example.charts'),
+            Menu::make(__('Users'))
+                ->icon('bs.people')
+                ->route('platform.systems.users')
+                ->permission('platform.systems.users')
+                ->title(__('Access Controls')),
 
-            // Menu::make('Cards')
-            //     ->icon('bs.card-text')
-            //     ->route('platform.example.cards')
-            //     ->divider(),
-
-            // Menu::make(__('Users'))
-            //     ->icon('bs.people')
-            //     ->route('platform.systems.users')
-            //     ->permission('platform.systems.users')
-            //     ->title(__('Access Controls')),
-
-            // Menu::make(__('Roles'))
-            //     ->icon('bs.shield')
-            //     ->route('platform.systems.roles')
-            //     ->permission('platform.systems.roles')
-            //     ->divider(),
+            Menu::make(__('Roles'))
+                ->icon('bs.shield')
+                ->route('platform.systems.roles')
+                ->permission('platform.systems.roles')
+                ->divider(),
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens;
 
 use App\Models\Contact;
+use App\Models\ContactLink;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
@@ -20,7 +21,8 @@ class ContactScreen extends Screen
     public function query(): iterable
     {
         return [
-            'contact' => Contact::first()
+            'contact' => Contact::first(),
+            'contact-social' => ContactLink::first(),
         ];
     }
 
@@ -31,7 +33,7 @@ class ContactScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Contact';
+        return 'Message Me';
     }
 
     /**
@@ -65,31 +67,47 @@ class ContactScreen extends Screen
 
                 Input::make('contact.phoneNumber')
                     ->mask([
-                        'mask' => '99999999999',
+                        'mask' => '+63 999 999 9999',
                         'numericInput' => true,
                     ])
                     ->required()
                     ->title(__('Contact Number'))
                     ->placeholder(__('')),
-            ]),
+            ])->title('Telephone and Email'),
+
+            Layout::rows([
+                Input::make('contact-social.platform')
+                    ->type('text')
+                    ->required()
+                    ->title('Contact Social'),
+
+                Input::make('contact-social.link')
+                    ->title('Contact Link')
+                    ->required(),
+
+                Input::make('contact-social.icon_path')
+                    ->title('Contact Icon')
+                    ->required(),
+            ])->title('Social Media Contact'),
         ];
     }
 
     public function save(Request $request)
     {   
-        // Retrieve the HeroSection model instance from the database
-        $heroSection = Contact::first();
         
-        // Update the model instance with the new data from the request
-        $heroSection->fill($request->input('contact'));
+        $contactInfo = Contact::first();
+        $contactSocial = ContactLink::first();
+        
+        $contactInfo->fill($request->input('contact'));
+        
+        $data = $request->input('contact-social');
+        $contactSocial->fill($data);
     
-        // Save the updated model instance back to the database
-        $heroSection->save();
-    
-        // Display a success message
+        $contactInfo->save();
+        $contactSocial->save();
+        
         Alert::info("Contacts updated successfully.");
     
-        // Redirect the user to the desired route
         return redirect()->route('platform.contact');
     }
 }
