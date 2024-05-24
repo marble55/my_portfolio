@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ReCaptchaV3;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class ContactMessageRequest extends FormRequest
 {
@@ -26,11 +28,16 @@ class ContactMessageRequest extends FormRequest
             'name' => 'required|string|max:30',
             'email' => 'required|email|max:50',
             'message' => 'required|string|max:255',
+            'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')]
         ];
     }
 
-    public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator){
+    protected function failedValidation(Validator $validator)
+    {
         throw new HttpResponseException(
-            redirect()->route('index')->with('error', $validator->errors()->first()));
+            redirect()->route('index')
+                ->withErrors($validator)
+                ->withInput()
+        );
     }
 }

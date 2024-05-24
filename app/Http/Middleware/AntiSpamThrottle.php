@@ -18,8 +18,8 @@ class AntiSpamThrottle
     {
         $key = $request->ip();
 
-        if (RateLimiter::tooManyAttempts($key, $maxAttempts)){
-            return redirect()->back()->with("error","Sending too many messages. Try again later");
+        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+            return redirect()->back()->with('error', 'Sending too many messages. Try again later');
         }
 
         RateLimiter::hit($key, $decayMinutes * 60);

@@ -162,6 +162,36 @@ img {
     the website, in light theme
 ==========*/
 
+
+/*========== Notficiations ==========*/
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.inform-notification {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.error-notification {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+.error-message {
+    display: block;
+}
+
 /*=============== REUSABLE CSS CLASSES ===============*/
 .foreground {
     position: relative;

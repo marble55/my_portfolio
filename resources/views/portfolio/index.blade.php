@@ -17,7 +17,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{-- JS  --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+    <script>
+        function onSubmit(token) {
+            document.getElementById("contactForm").submit();
+        }
+    </script>
     <title> Zeler Jim Portfoliio </title>
 </head>
 
@@ -73,34 +82,44 @@
 
             <!-- Theme change button -->
             @if (session()->has('message'))
-                <span id="inform-notification">Your Message Has Been Sent :)</span>
+                <div class="notification inform-notification">Your Message Has Been Sent :)</div>
             @endif
 
             @if (session()->has('error'))
-                <span id="error-notification">{{ session('error') }}</span>
+                <div class="notification error-notification">{{ session('error') }}</div>
+            @endif
+
+            @if ($errors->any())
+                <div class="notification error-notification">
+                    @foreach ($errors->all() as $error)
+                        <span class="error-message">{{ $error }}</span><br>
+                    @endforeach
+                </div>
             @endif
 
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                    // Function to remove an element after a specified delay
-                    function removeElementAfterDelay(elementId, delay) {
+                    // Function to remove elements with a specified class after a delay
+                    function removeElementsAfterDelay(className, delay) {
                         setTimeout(function() {
-                            var element = document.getElementById(elementId);
-                            if (element) {
+                            var elements = document.getElementsByClassName(className);
+                            Array.prototype.forEach.call(elements, function(element) {
                                 element.style.transition = "opacity 1s";
                                 element.style.opacity = 0;
                                 setTimeout(function() {
                                     element.remove();
-                                }, 1000); // Match this duration to the transition time for smooth removal
-                            }
+                                }, 1000);
+                            });
                         }, delay);
                     }
 
-                    // Remove the notification spans after 5 seconds (5000 milliseconds)
-                    removeElementAfterDelay('inform-notification', 5000);
-                    removeElementAfterDelay('error-notification', 5000);
+
+                    removeElementsAfterDelay('inform-notification', 10000);
+                    removeElementsAfterDelay('error-notification', 10000);
                 });
             </script>
+
+
         </nav>
     </header>
 
@@ -213,11 +232,11 @@
                     <p class="about_description">
                         {{ $abouts->description ??
                             '
-                                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                        Veniam libero consequuntur nobis laboriosam temporibus
-                                                                        laborum eaque, praesentium rem nostrum deserunt
-                                                                        inventore sunt! Recusandae veritatis a, aperiam aut
-                                                                        ipsam officiis vero?' }}
+                                                                                                                                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                                                                                                                        Veniam libero consequuntur nobis laboriosam temporibus
+                                                                                                                                                                        laborum eaque, praesentium rem nostrum deserunt
+                                                                                                                                                                        inventore sunt! Recusandae veritatis a, aperiam aut
+                                                                                                                                                                        ipsam officiis vero?' }}
                     </p>
                     <a href="#contact" class="button">Contact Me</a>
                 </div>
@@ -442,7 +461,7 @@
                 @if ($portfolios)
                     @foreach ($portfolios as $portfolio)
                         <div class="work_card web">
-                            <img src="{{$portfolio->image_path ?? 'assets/img/work1.jpg' }}" alt class="work_img">
+                            <img src="{{ $portfolio->image_path ?? 'assets/img/work1.jpg' }}" alt class="work_img">
                             <h3 class="work_title">{{ $portfolio->title ?? 'Web design' }}</h3>
                             <span class="work_button">
                                 Read More <i class='bx bx-right-arrow-alt services_icon'></i>
@@ -451,7 +470,9 @@
                                 <div class="work_modal-content">
                                     <i class='bx bx-x work_modal-close'></i>
                                     <h3 class="work_modal-title">{{ $portfolio->title ?? 'Web design' }}</h3>
-                                    <p class="work_modal-description">{{ $portfolio->description ?? 'This is the description for the web design.' }}</p>
+                                    <p class="work_modal-description">
+                                        {{ $portfolio->description ?? 'This is the description for the web design.' }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -485,7 +506,7 @@
                     <div class="contact_card">
                         <i class='{{ $social_contact->icon_path ?? 'bx bx-envelope contact_card-icon' }}'></i>
                         <h3 class="contact_card-title">{{ ucfirst($social_contact->platform) }}</h3>
-                        
+
                         <a href="{{ $social_contact_link ?? '#' }}" target="_blank" class="contact_button">
                             Message me <i class='bx bx-mail-send contact_button-icon'></i>
                         </a>
@@ -495,7 +516,8 @@
                 <div class="contact_content">
                     <h3 class="contact_title">Write me your project</h3>
 
-                    <form method="POST" action="{{ route('contact.send') }}" class="contact_form">
+                    <form id="contactForm" method="POST" action="{{ route('contact.send') }}"
+                        class="contact_form">
                         @csrf
                         @method('POST')
                         <div class="contact_form-div">
@@ -515,7 +537,9 @@
                             <textarea name="message" id="" cols="30" rows="10" class="contact_form-input"></textarea>
                         </div>
 
-                        <button class="button">Send Message</button>
+                        <button class="button g-recaptcha"
+                            data-sitekey="{{ config('services.recaptcha_v3.siteKey') }}" data-callback="onSubmit"
+                            data-action="submitContact">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -545,7 +569,7 @@
             <ul class="footer_social">
                 @if ($socialLinks)
                     @foreach ($socialLinks as $socialLink)
-                        <a href="{{ $socialLink->link }}"  target="_blank" class="footer_social-link">
+                        <a href="{{ $socialLink->link }}" target="_blank" class="footer_social-link">
                             <i class='{{ $socialLink->icon_path }}'></i>
                         </a>
                     @endforeach
