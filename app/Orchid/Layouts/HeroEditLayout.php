@@ -23,12 +23,12 @@ class HeroEditLayout extends Rows
     protected function fields(): iterable
     {
         return [
-            Input::make('hero.occupation')
-            ->type('text')
-            ->max(20)
-            ->required()
-            ->title(__('Occupation'))
-            ->placeholder(__('Occupation Title')),
+            // Input::make('hero.occupation')
+            // ->type('text')
+            // ->max(20)
+            // ->required()
+            // ->title(__('Occupation'))
+            // ->placeholder(__('Occupation Title')),
 
             Input::make('hero.name_title')
             ->type('text')

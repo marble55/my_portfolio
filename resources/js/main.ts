@@ -1,5 +1,3 @@
-import '../css/app.scss';
-
 // let curX : number = 0;
 // let curY : number = 0;
 // let tgX : number = 0;

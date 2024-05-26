@@ -126,7 +126,7 @@ return [
      */
 
     'resource' => [
-        'stylesheets' => ['public\assets\css\platform.css'],
+        'stylesheets' => [],
         'scripts'     => [],
     ],
 

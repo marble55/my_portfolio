@@ -17,7 +17,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        
+
         $heroSections = HeroSection::first();
         $abouts = About::first();
         $skillLists = AboutList::where('category', '=', 'Skill')->get();
@@ -34,15 +34,17 @@ class IndexController extends Controller
         $aboutFact3 = AboutList::find(3);
 
         $attachment = $heroSections->attachment()->first();
+        $cv_document = '';
+        if ($attachment != null) {
+            $cv_document = $attachment->url();
+        }
 
-        $cv_document = $attachment->url();
 
-      
         return view('portfolio.index', compact(
-            'heroSections', 
-            'abouts', 
-            'skillLists', 
-            'experienceLists', 
+            'heroSections',
+            'abouts',
+            'skillLists',
+            'experienceLists',
             'educationLists',
             'services',
             'portfolios',
@@ -53,7 +55,8 @@ class IndexController extends Controller
             'aboutFact1',
             'aboutFact2',
             'aboutFact3',
-        ));
+        )
+        );
     }
 
 }

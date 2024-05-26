@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--=============== FAVICON ===============-->
-    <link rel="shortcut icon" href="{{ URL::asset('assets/img/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::asset('assets/img/logo.png') }}" type="image/x-icon">
     <!--=============== BOXICONS ===============-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <link href="https://unpkg.com/micromodal/dist/micromodal.min.js">
+    <!--=============== FONTAWESOME ===============-->
+    <script src="https://kit.fontawesome.com/377fd11c1f.js" crossorigin="anonymous"></script>
     <!--=============== SWIPER CSS ===============-->
     <link rel="stylesheet" href="{{ URL::asset('/assets/css/swiper-bundle.min.css') }}">
     <!--=============== CSS ===============-->
@@ -31,6 +32,8 @@
 </head>
 
 <body>
+    
+    <!-- Cursor and Follower -->
     <div class="cursor"></div>
     <div class="follow"></div>
 
@@ -80,78 +83,24 @@
                 </ul>
             </div>
 
-            <!-- Theme change button -->
+            <!-- Message and Error Notification -->
             @if (session()->has('message'))
                 <div class="notification inform-notification">Your Message Has Been Sent :)</div>
             @endif
 
-            @if (session()->has('error'))
-                <div class="notification error-notification">{{ session('error') }}</div>
-            @endif
-
-            @if ($errors->any())
+            @if (session()->has('error') || $errors->any())
                 <div class="notification error-notification">
+                    {{ session('error') }}
                     @foreach ($errors->all() as $error)
                         <span class="error-message">{{ $error }}</span><br>
                     @endforeach
                 </div>
             @endif
-
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    // Function to remove elements with a specified class after a delay
-                    function removeElementsAfterDelay(className, delay) {
-                        setTimeout(function() {
-                            var elements = document.getElementsByClassName(className);
-                            Array.prototype.forEach.call(elements, function(element) {
-                                element.style.transition = "opacity 1s";
-                                element.style.opacity = 0;
-                                setTimeout(function() {
-                                    element.remove();
-                                }, 1000);
-                            });
-                        }, delay);
-                    }
-
-
-                    removeElementsAfterDelay('inform-notification', 10000);
-                    removeElementsAfterDelay('error-notification', 10000);
-                });
-            </script>
-
-
         </nav>
     </header>
 
     <!--=============== MAIN ===============-->
     <main class="main ">
-
-        <div class="cursor"></div>
-
-        <!--=============== Bubble Background ===============-->
-        {{-- <div class="gradient-background">
-            <svg xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <filter id="goo">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                        <feColorMatrix in="blur" mode="matrix"
-                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18  -8" result="goo" />
-                        <feBlend in="SourceGraphic" in2="goo" />
-                    </filter>
-                </defs>
-            </svg>
-            <div class="background gradients-container">
-                <div class="g1"></div>
-                <div class="g2"></div>
-                <div class="g3"></div>
-                <div class="g4"></div>
-                <div class="g5"></div>
-                <div class="g7"></div>
-                <div class="g8"></div>
-                <div class="g9"></div>
-                <div class="g10"></div>
-                <div class="interactive"></div>
-            </div> --}}
 
         <!--=============== HOME ===============-->
         <section class="home section" id="home">
@@ -259,11 +208,11 @@
                         <div class="skills_box">
                             @if ($skillLists)
                                 @foreach ($skillLists as $skill)
-                                    <div class="skills_data">
+                                    <div class="skills_data increase-size-on-hover">
                                         <i class='{{ $skill->icon ?? 'bx bx-badge-check' }}'></i>
 
                                         <div>
-                                            <h3 class="skills_name">{{ $skill->title ?? 'HTML' }}</h3>
+                                            <h3 class="skills_name title">{{ $skill->title ?? 'HTML' }}</h3>
                                             <span class="skills_level">{{ $skill->description ?? 'Basic' }}</span>
                                         </div>
                                     </div>
@@ -278,7 +227,7 @@
                         <div class="skills_box">
                             @if ($experienceLists)
                                 @foreach ($experienceLists as $experience)
-                                    <div class="skills_data">
+                                    <div id="skills_experience" class="skills_data">
                                         <i class='{{ $experience->icon ?? 'bx bx-badge-check' }}'></i>
 
                                         <div>
@@ -498,7 +447,7 @@
                     </div>
 
                     <div class="contact_card">
-                        <i class='bx bxl-messenger contact_card-icon'></i>
+                        <i class='bx bxs-phone contact_card-icon'></i>
                         <h3 class="contact_card-title">Telephone</h3>
                         <span class="contact_card-data">{{ $contact->phoneNumber ?? '+63 999 999 9999' }}</span>
                     </div>
@@ -544,7 +493,7 @@
                 </div>
             </div>
         </section>
-        </div>
+
 
 
     </main>

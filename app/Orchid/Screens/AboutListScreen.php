@@ -159,7 +159,12 @@ class AboutListScreen extends Screen
         $aboutList->update([
             'title' => $request->input('aboutList.title'),
             'description' => $request->input('aboutList.description'),
-            'icon' => $request->input('aboutList.icon'),
+            'icon' => $this->stripIcons($request->input('aboutList.icon')),
         ]);
+    }
+
+    public function stripIcons(string $icon): string
+    {
+        return str_replace(['<i class="','"></i>'],'', $icon);
     }
 }

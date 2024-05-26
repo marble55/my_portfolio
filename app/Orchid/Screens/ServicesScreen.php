@@ -77,8 +77,8 @@ class ServicesScreen extends Screen
                     return $services->description;
                 })->width('500px'),
 
-                TD::make('services.icon_path', "Icon Path")->render(function (Service $services) {
-                    return $services->icon_path;}),
+                // TD::make('services.icon_path', "Icon Path")->render(function (Service $services) {
+                //     return $services->icon_path;}),
 
                 //Delete Button
                 TD::make('delete', 'Delete')->render(function (Service $services) {
