@@ -43,7 +43,7 @@
             <a href="#" class="nav_logo increase-size-on-hover">{{ $heroSections->name_title ?? 'Zeller Jim' }}
             </a>
 
-            <div class="nav_menu">
+            <div id="nav_menu" class="nav_menu">
                 <ul class="nav_list">
                     <li class="nav_item">
                         <a href="#home" class="nav_link active_link">

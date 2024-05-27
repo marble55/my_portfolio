@@ -33,6 +33,14 @@ const scrollHeader = () => {
 }
 window.addEventListener('scroll', scrollHeader)
 
+const scrollNavMenu = () => {
+    const header = document.getElementById('nav_menu')
+    // Add a class if the bottom offset is greater than 50 of the viewport
+    window.scrollY >= 50 ? header.classList.add('nav_menu-scrolled')
+        : header.classList.remove('nav_menu-scrolled')
+}
+window.addEventListener('scroll', scrollNavMenu)
+
 /*=============== SERVICES MODAL ===============*/
 const modalViews = document.querySelectorAll('.services_modal'),
     modalBtns = document.querySelectorAll('.services_button'),
