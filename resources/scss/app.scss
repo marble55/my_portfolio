@@ -94,7 +94,7 @@ test {
         --h1-font-size: 3.25rem;
         --h2-font-size: 2.5rem;
         --h3-font-size: 2.25rem;
-        --normal-font-size: 1.5rem;
+        --normal-font-size: 0.5rem;
         --small-font-size: 0.875rem;
         --smaller-font-size: 1.813rem;
     }
@@ -207,9 +207,10 @@ img {
 }
 
 .container {
-    max-width: 992px;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    // max-width: 992px;
+    margin: 0px 1rem;
+    // margin-left: 1rem;
+    // margin-right: 1rem;
 }
 
 .grid {
@@ -525,7 +526,8 @@ img {
 }
 
 .about_title {
-    font-size: var(--small-font-size);
+    // font-size: var(--small-font-size);
+
     color: var(--text-color-container);
 }
 
@@ -848,6 +850,7 @@ img {
 .contact_info {
     display: grid;
     gap: 1rem;
+    grid-template-columns: repeat(1fr,1fr);
 }
 
 .contact_card {
@@ -1185,6 +1188,38 @@ body:active .cursor {
 }
 
 /*=============== BREAKPOINTS ===============*/
+
+@media screen and (min-width: 770px){
+    
+    .section{
+        // width: 100%;
+    }
+
+    .about_container{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .work_container{
+        grid-template-columns: repeat(2, 25rem);
+    }
+
+    .contact_container{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .contact_info{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cursor{
+        display: block;
+    }
+    .follow{
+        display: block;
+    }
+}
+
 /* For small devices */
 @media screen and (max-width: 375px) {
     .nav_menu {
@@ -1347,6 +1382,12 @@ body:active .cursor {
     }
 }
 
+@media screen and (min-width: 740px) {
+    .about_container{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
 //768px
 @media screen and (min-width: 510px) {
     .nav_menu {
@@ -1359,12 +1400,10 @@ body:active .cursor {
     .home_social-link{
         font-size: 1.7rem;
     }
-
     .about_info {
         grid-template-columns: repeat(3, 140px);
         justify-content: center;
     }
-
     .about_description {
         padding: 0 5rem;
     }
@@ -1394,6 +1433,7 @@ body:active .cursor {
     }
 
     .work_container {
+        grid-template-columns: repeat(2, 1fr);
         justify-content: center;
     }
     .work_img {
@@ -1425,6 +1465,101 @@ body:active .cursor {
         font-size: 2rem;
     }
 }
+
+@media screen and (min-width: 1200px) {
+    .home_greeting{
+        font-size: 1.5rem;
+    }
+    .home_education{
+        font-size: 1.25rem;
+    }
+    .home_social i{
+        font-size: 2rem;
+    }
+
+    .about_img{
+        width: 400px;
+    }
+    .about_description{
+        font-size: 1.30rem;
+        color: black;
+    }
+    .about_title{
+        font-size: 1.5rem;
+    }
+
+    .skills_container{
+        grid-template-columns: repeat(2, 400px);
+    }
+    .skills_title{
+        font-size: 2rem;
+    }
+    .skills_name{
+        font-size: 2rem;
+        line-height: normal;
+        margin-bottom: 10px;
+    }
+    .skills_level{
+        font-size: 1rem;
+    }
+
+    .services_container{
+        grid-template-columns: repeat(2, 500px);
+    }
+    .services_button{
+        font-size: 1.25rem;
+    }
+
+    .work_container{
+        grid-template-columns: repeat(2, 450px);
+    }
+    .work_img{
+        width: 400px;
+    }
+    .work_title{
+        font-size: 2rem;
+        min-height: 120px;
+    }
+
+    .contact_form-input{
+        font-size: 1.25rem;
+    }
+    .contact_form-area{
+        font-size: 1rem;
+    }
+    .contact_card-title{
+        font-size: 2rem;
+    }
+    .contact_card-data{
+        font-size: 1.25rem;
+    }
+    .g-recaptcha{
+        font-size: 2rem;
+    }
+
+    .footer_title{
+        font-size: 2.5rem;
+    }
+    .footer_link{
+        font-size: 1.25rem;
+    }
+    .footer_copy{
+        font-size: 1.2rem;
+    }
+
+
+    .nav_menu{
+        width: max-content;
+    }
+    .nav_list{
+        gap: 1rem;
+    }
+    .nav_link{
+        font-size: 2rem;
+    }
+}
+
+
 
 /* For medium devices */
 // @media screen and (min-width: 576px) {
@@ -1498,15 +1633,9 @@ body:active .cursor {
 //     }
 // }
 
-@media screen and (min-width: 770px){
-    .about_container{
-        grid-template-columns: repeat(2,1fr);
-    }
-}
-
 
 /* For large devices */
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1740px) {
     .container {
         /* margin-left: auto; */
         /* margin-right: auto; */
