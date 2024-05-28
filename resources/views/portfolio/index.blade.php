@@ -398,12 +398,12 @@
             <span class="section__subtitle">My Portfolio</span>
             <h2 class="section__title">Recent Works</h2>
 
-            <div class="work_filters">
+            {{-- <div class="work_filters">
                 <span class="work_item active-work" data-filter='all'>All</span>
                 <span class="work_item" data-filter='.web'>Web</span>
                 <span class="work_item" data-filter='.mobile'>Mobile</span>
                 <span class="work_item" data-filter='.design'>Design</span>
-            </div>
+            </div> --}}
 
             <div class="work_container container grid">
 

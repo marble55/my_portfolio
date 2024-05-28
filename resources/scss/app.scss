@@ -500,6 +500,10 @@ img {
     justify-self: center;
 }
 
+.work_filters{
+    display: none;
+}
+
 .about_data {
     text-align: center;
 }
@@ -517,6 +521,7 @@ img {
     background-color: var(--container-color);
     border-radius: 0.75rem;
     padding: 0.75rem 0.5rem;
+    display: none;
 }
 
 .about_icon {
@@ -539,6 +544,7 @@ img {
     margin-bottom: 2rem;
     color: black;
     font-size: 1.1rem;
+    text-align: justify;
 }
 
 /*=============== SKILLS ===============*/
@@ -1363,16 +1369,6 @@ body:active .cursor {
     .work_img {
         width: 90%;
     }
-
-    // .contact_info {
-    //     // grid-template-columns: 300px;
-    //     grid-template-columns: repeat(2, 1fr);
-    //     justify-content: center;
-    // }
-    // .contact_title{
-    //     grid-column-start: 1;
-    // }
-
 }
 
 @media screen and (max-width: 575px) {
@@ -1432,6 +1428,10 @@ body:active .cursor {
         font-size: 35px;
     }
 
+    .work_modal-content{
+        min-height: 250px;
+        width: 1000px;
+    }
     .work_container {
         grid-template-columns: repeat(2, 1fr);
         justify-content: center;
@@ -1519,6 +1519,9 @@ body:active .cursor {
     .work_title{
         font-size: 2rem;
         min-height: 120px;
+    }
+    .work_modal-title{
+        font-size: 1.5rem;
     }
 
     .contact_form-input{
@@ -1779,6 +1782,10 @@ body:active .cursor {
     .contact_container {
         column-gap: 6rem;
     }
+    .contact-info{
+        margin: 0 100px;
+    }
+
     .footer_social-link {
         font-size: 1.7rem;
         padding: 0.4rem;

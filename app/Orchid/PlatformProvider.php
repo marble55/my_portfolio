@@ -38,10 +38,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('platform.hero'),
 
             Menu::make('About')
-                ->route('platform.about')
-                ->list([
-                    Menu::make('Facts List')->route('platform.about.facts', ['category' => 'fact']),
-                ]),
+                ->route('platform.about'),
+                // ->list([
+                //     Menu::make('Facts List')->route('platform.about.facts', ['category' => 'fact']),
+                // ]),
 
             Menu::make('Abilities')
                 ->list([
