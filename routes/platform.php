@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\HeroSectionController;
+use App\Orchid\Screens\AboutFacts;
+use App\Orchid\Screens\AboutListEditScreen;
+use App\Orchid\Screens\AboutListScreen;
+use App\Orchid\Screens\AboutSectionScreen;
+use App\Orchid\Screens\ContactLinksScreen;
+use App\Orchid\Screens\ContactListScreen;
+use App\Orchid\Screens\ContactMessageScreen;
+use App\Orchid\Screens\ContactScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -11,9 +20,12 @@ use App\Orchid\Screens\Examples\ExampleGridScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\HeroSectionScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\PortfolioScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
+use App\Orchid\Screens\ServicesScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -35,6 +47,79 @@ use Tabuna\Breadcrumbs\Trail;
 Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
 
+// Hero
+Route::screen('hero', HeroSectionScreen::class)->name('platform.hero');
+
+// Hero update -not working
+Route::put('/hero/update', [HeroSectionController::class, 'update'])
+    ->name('hero.update');
+
+// About
+Route::screen('/about', AboutSectionScreen::class)->name('platform.about')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('About'), route('platform.about')));;
+
+//About > {facts}
+Route::screen('about/facts/{category}', AboutFacts::class)->name('platform.about.facts')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.about')
+        ->push(__('Facts'), route('platform.about.facts', ['category' => 'fact'])));
+
+
+//About > {Skill}
+Route::screen('about/list1/{category}', AboutListScreen::class)->name('platform.about.skill')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.about')
+        ->push(__('Skill'), route('platform.about.skill', ['category' => 'Skill'])));
+
+//About > {Experience}
+Route::screen('about/list2/{category}', AboutListScreen::class)->name('platform.about.experience')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.about')
+        ->push(__('Experience'), route('platform.about.experience', ['category' => 'Experience'])));
+
+//About > {Education}
+Route::screen('about/list3/{category}', AboutListScreen::class)->name('platform.about.education')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.about')
+        ->push(__('Education'), route('platform.about.education', ['category' => 'Education'])));
+
+
+// About > {category} > Edit
+Route::screen('about/list1/{category}/edit', AboutListEditScreen::class)
+    ->name('platform.about.edit');
+
+// Services
+Route::screen('services', ServicesScreen::class)->name('platform.services')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Services'), route('platform.services')));;
+
+// Portfolio
+Route::screen('portfolio', PortfolioScreen::class)->name('platform.portfolio')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Portfolio'), route('platform.portfolio')));;
+
+// Contact
+Route::screen('contact', ContactScreen::class)->name('platform.contact')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Contact'), route('platform.contact')));;
+
+// Contact > Links
+Route::screen('contact/links', ContactLinksScreen::class)->name('platform.contact.links')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.contact')
+        ->push(__('Links'), route('platform.contact.links')));;
+
+// Contact > Messages
+Route::screen('contact/messages', ContactMessageScreen::class)->name('platform.contact.messages')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.contact')
+        ->push(__('Links'), route('platform.contact.messages')));
+        
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)
     ->name('platform.profile')
