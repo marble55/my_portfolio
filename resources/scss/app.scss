@@ -1080,50 +1080,6 @@ body {
     overflow-x: hidden;
 }
 
-//******************************************************
-// Like it if you like it :) Thank you
-// Best viewed fullscreen
-// https://codepen.io/nocni_sovac/full/eYJQEbd
-//******************************************************
-
-// @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
-
-// .imgBack {
-//   position:absolute;
-//   width: 700px;
-// }
-
-//   .cursor {
-//     width:40px;
-//     height:40px;
-//     border:3px solid white;
-//     border-radius:50%;
-//     position: absolute;
-//     box-shadow: 2px -3px 41px -1px rgba(250,250,250,0.64);
-//     transition: all .1s linear;
-//     pointer-events: none;
-//   }
-
-// .title {
-//   position: relative;
-//   display: block;
-//   -webkit-text-stroke: 2px #ffffff;
-//   text-stroke: 2px #ffffff;
-//   transition: all .4s linear;
-//   user-select: none;
-
-//   &:hover {
-//     opacity: 1;
-//     -webkit-text-fill-color: rgb(0, 0, 0);
-//     text-fill-color: rgb(0, 0, 0);
-
-//  ~ .cursor {
-//     transform: scale(1.4);
-//     background: rgb(255, 255, 255);
-//   }
-//   }
-// }
-
 .cursor {
     position: absolute;
     background-color: #000;
@@ -1196,10 +1152,6 @@ body:active .cursor {
 /*=============== BREAKPOINTS ===============*/
 
 @media screen and (min-width: 770px){
-    
-    .section{
-        // width: 100%;
-    }
 
     .about_container{
         grid-template-columns: repeat(2,1fr);
@@ -1561,81 +1513,6 @@ body:active .cursor {
         font-size: 2rem;
     }
 }
-
-
-
-/* For medium devices */
-// @media screen and (min-width: 576px) {
-
-//     .nav_menu {
-//         width: 328px;
-//         left: 0;
-//         right: 0;
-//         margin: 0 auto;
-//     }
-
-//     .about_info {
-//         grid-template-columns: repeat(3, 140px);
-//         justify-content: center;
-//     }
-
-//     .about_description {
-//         padding: 0 5rem;
-//     }
-
-//     .skills_container {
-//         justify-content: center;
-//     }
-
-//     .skills_content {
-//         padding: 2rem 4rem;
-//     }
-
-//     .services_container {
-//         grid-template-columns: repeat(2, 160px);
-//         justify-content: center;
-//     }
-
-//     .services_modal-content {
-//         width: 500px;
-//         padding: 4.5rem 2.5rem 2.5rem;
-//     }
-
-//     .services_modal-description {
-//         padding: 0 3.5rem;
-//     }
-
-//     .work_container {
-//         justify-content: center;
-//     }
-
-//     .work_img {
-//         width: 295px;
-//     }
-
-//     .contact_info {
-//         grid-template-columns: 300px;
-//         justify-content: center;
-//     }
-
-//     .contact_form {
-//         width: 360px;
-//         margin: 0 auto;
-//     }
-// }
-
-// @media screen and (min-width: 767px) {
-//     .work_container {
-//         grid-template-columns: repeat(2, max-content);
-//     }
-
-//     .contact_container {
-//         grid-template-columns: repeat(2, max-content);
-//         justify-content: center;
-//         column-gap: 3rem;
-//     }
-// }
-
 
 /* For large devices */
 @media screen and (min-width: 1740px) {
